@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
             _bubble.transform.position = transform.position;
 
         int lastDirection = 0;
+        breakoutUI.SetNextInput(0);
 
         while (breakHealth > 0.0f)
         {
@@ -214,11 +215,13 @@ public class PlayerController : MonoBehaviour
             {
                 lastDirection = -1;
                 breaking = true;
+                breakoutUI.SetNextInput(-1);
             }
             else if (lastDirection <= 0 && (InputManager.Instance.GetGamepadStick(StickType.LEFT, 0).x > 0.0f || InputManager.Instance.GetKey(KeyType.D).wasPressedThisFrame))
             {
                 lastDirection = 1;
                 breaking = true;
+                breakoutUI.SetNextInput(1);
             }
 
             if (breaking)

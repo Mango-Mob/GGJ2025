@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class BreakoutUI : MonoBehaviour
 {
-    [SerializeField] private GameObject keyboardControls;
-    [SerializeField] private GameObject controllerControls;
+    [SerializeField] private Animator keyboardControls;
+    [SerializeField] private Animator controllerControls;
     [SerializeField] private Image healthFill;
 
     private CanvasGroup canvasGroup;
@@ -21,8 +21,13 @@ public class BreakoutUI : MonoBehaviour
     void Update()
     {
         bool usingGamepad = InputManager.Instance.isInGamepadMode;
-        keyboardControls.SetActive(!usingGamepad);
-        controllerControls.SetActive(usingGamepad);
+        keyboardControls.gameObject.SetActive(!usingGamepad);
+        controllerControls.gameObject.SetActive(usingGamepad);
+    }
+    public void SetNextInput(int _target)
+    {
+        keyboardControls.SetInteger("Target", _target);
+        controllerControls.SetInteger("Target", _target);
     }
     public void SetVisible(bool visible)
     {
