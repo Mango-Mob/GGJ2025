@@ -71,6 +71,11 @@ public class Bubble : PausableObject
             Destroy(collider.gameObject);
         }
 
+        if(collider.gameObject.tag == "Player")
+        {
+            collider.GetComponent<PlayerController>().HitPlayer(this);
+        }
+
         rigid.velocity = speed;
     }
 
@@ -101,7 +106,7 @@ public class Bubble : PausableObject
         pos = speedCurve.EvaluateInverse(rigid.velocity.y / max_speed);
     }
 
-    void Pop( bool allow_splitting )
+    public void Pop( bool allow_splitting )
     {
         var rigid = GetComponent<Rigidbody>();
         rigid.velocity = Vector3.zero;
@@ -110,6 +115,7 @@ public class Bubble : PausableObject
 
         }
 
+        
         popEffect.SetActive(true);
         popEffect.transform.parent = null;
         popEffect.GetComponent<VFXTimerScript>().m_startedTimer = true;
