@@ -908,6 +908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
+      propertyPath: is_flipped
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2025955780252901358, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
       propertyPath: m_RootOrder
       value: 8
