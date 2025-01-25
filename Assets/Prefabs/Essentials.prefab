@@ -328,6 +328,74 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 353656581545117324, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 53511fb71ed95a94b87ac553c540c84e, type: 2}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: ShapeModule.m_Rotation.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 537835799244699649, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615788284124164328, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615788284124164328, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615788284124164328, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311457813093753161, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: m_Name
+      value: ScoreUpVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1311457813093753161, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072610766244193431, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 058e40f23b309cb46853c903ad9fe2cd, type: 2}
     - target: {fileID: 2856369841043940821, guid: f044aff42e72f0546b0b308e36d027fa, type: 3}
       propertyPath: m_Layer
       value: 30
