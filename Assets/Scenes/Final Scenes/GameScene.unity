@@ -2483,7 +2483,7 @@ MonoBehaviour:
   m_player: {fileID: 89536139}
   m_activeCamera: {fileID: 295767090}
   IsInCombat: 0
-  time_desplay: 
+  time: 0
   SpawnDelay: 0
   DensityScaleCurve:
     serializedVersion: 2
