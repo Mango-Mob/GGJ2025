@@ -6,12 +6,13 @@ using static UnityEditor.PlayerSettings;
 public class Bubble : PausableObject
 {
     public float density = 0.2f; //1 = Same as air
+    public float max_density = 2.0f;
     private float tempY;
 
     public AnimationCurve speedCurve;
     public GameObject popEffect;
     public float fixed_height = 7.15f; // max speed is height in 1 second
-    public float max_speed = 2.86f;
+    public AnimationCurve max_speed;
 
     private Vector3 cached_velocity;
     public float pos = 0.0f;
@@ -26,7 +27,7 @@ public class Bubble : PausableObject
     // Start is called before the first frame update
     void Start()
     {
-        if (density >= 1.5f)
+        if (density >= max_density)
             Pop(false);
     }
     public void PlaySpawnAnimation()
@@ -42,7 +43,7 @@ public class Bubble : PausableObject
         if(transform.position.y >= fixed_height || transform.localPosition.y < 0 )
             Pop( false );
 
-        if (density >= 1.5f)
+        if (density >= max_density)
             Pop(false);
     }
 
@@ -93,7 +94,7 @@ public class Bubble : PausableObject
         var rigid = GetComponent<Rigidbody>();
         var speed = rigid.velocity;
         pos += Time.fixedDeltaTime;
-        speed.y = speedCurve.Evaluate(pos) * (1.0f - density) * max_speed;
+        speed.y = speedCurve.Evaluate(pos) * max_speed.Evaluate(density);
 
         rigid.velocity = speed;
     }
@@ -103,7 +104,7 @@ public class Bubble : PausableObject
         var rigid = GetComponent<Rigidbody>();
         rigid.velocity = velocity;
         
-        pos = speedCurve.EvaluateInverse(rigid.velocity.y / max_speed);
+        pos = speedCurve.EvaluateInverse(rigid.velocity.y / max_speed.Evaluate(density));
     }
 
     public void Pop( bool allow_splitting )

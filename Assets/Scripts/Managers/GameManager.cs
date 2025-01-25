@@ -52,8 +52,8 @@ public class GameManager : Singleton<GameManager>
         obj.transform.position = positon;
         var bubble = obj.GetComponent<Bubble>();
 
-        bubble.SetVelocity(velocity);
         bubble.density = density;
+        bubble.SetVelocity(velocity);
         bubble.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f) * GameManager.Instance.DensityScaleCurve.Evaluate(bubble.density);
 
         return obj;

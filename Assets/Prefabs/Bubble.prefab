@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_paused: 0
   density: 0.4
+  max_density: 2
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -193,8 +194,41 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  model: {fileID: 5576253589664013753}
   popEffect: {fileID: 861786067003161441}
+  fixed_height: 18
+  max_speed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 4
+      inSlope: -2
+      outSlope: -2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 2
+      inSlope: -1.6
+      outSlope: -1.6
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2
+      value: 0.8
+      inSlope: -1.2
+      outSlope: -1.2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   pos: 0
 --- !u!135 &-7762570472780925070
 SphereCollider:
