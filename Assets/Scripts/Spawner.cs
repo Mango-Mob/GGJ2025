@@ -16,10 +16,12 @@ public class Spawner : PausableObject
     public float time;
     public Animator dog_animator;
 
+    public GameObject player;
     private float timer;
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerController>().gameObject;
         cached_directions = GetDirections();
         Spawn();
     }
@@ -33,6 +35,9 @@ public class Spawner : PausableObject
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
+            if (Extentions.CircleVsCircle(player.transform.position, transform.position, safety_zone, 3))
+                return;
+
             var list = GameManager.Instance.GetBubblesInRange(transform.position, safety_zone);
             if (list.Count > 0)
                 return;

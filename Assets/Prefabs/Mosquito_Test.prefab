@@ -148,6 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7960242123188415611}
   - component: {fileID: 3276342112002200996}
+  - component: {fileID: 4251250217876212329}
   m_Layer: 0
   m_Name: Mosquito_Test
   m_TagString: Enemy
@@ -192,6 +193,27 @@ MonoBehaviour:
   max_delay: 3.2
   AlarmPrefab: {fileID: 5822025326677310494, guid: f129f9017cbbf0b42848a6f5aa9bf5dc, type: 3}
   timer: 0
+--- !u!114 &4251250217876212329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7292355452263691969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024ecd21f977d0b4cbfd71ce0c41f316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localVolume: 1
+  isMuted: 0
+  is3D: 0
+  min3D_Dist: 1
+  max3D_Dist: 500
+  mainClip: {fileID: 8300000, guid: 0f669c637dfbad54aae73bde5fcc0e5f, type: 3}
+  channel: 1
+  isPlayOnAwake: 0
+  isLooping: 0
 --- !u!1 &8085055892423452496
 GameObject:
   m_ObjectHideFlags: 0

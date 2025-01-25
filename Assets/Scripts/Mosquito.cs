@@ -51,6 +51,7 @@ public class Mosquito : PausableObject
         }
         else if (CreatedAlarm)
         {
+            GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
             var renderer = GetComponentInChildren<MeshRenderer>();
             renderer.material.SetInt("_Flash", 0);
             Destroy(CreatedAlarm);
@@ -67,6 +68,7 @@ public class Mosquito : PausableObject
             speed = Random.Range(min_speed, max_speed);
             transform.localScale = new Vector3(-1, 1, 1);
             transform.position = new Vector3(right_edge, transform.position.y, transform.position.z);
+            GetComponent<SoloAudioAgent>().Stop();
         }
         else if (!is_facing_right && transform.position.x >= left_edge )
         {
@@ -75,6 +77,7 @@ public class Mosquito : PausableObject
             speed = Random.Range(min_speed, max_speed);
             transform.localScale = new Vector3(1, 1, 1);
             transform.position = new Vector3(left_edge, transform.position.y, transform.position.z);
+            GetComponent<SoloAudioAgent>().Stop();
         }
     }
 
