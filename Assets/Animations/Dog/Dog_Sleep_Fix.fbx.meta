@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47498717c9c902e428d28907e1d5a9ff
+guid: 962eb69f494eadc4d9f94c40ec807fa4
 ModelImporter:
   serializedVersion: 20300
   internalIDToNameTable: []
@@ -43,7 +43,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -114,7 +114,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1.27
+    globalScale: 50
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
