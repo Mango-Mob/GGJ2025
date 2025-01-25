@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boostDuration = 0.5f;
     [SerializeField] private float boostCooldown = 0.5f;
     [SerializeField] private float boostRechargeSpeed = 0.2f;
+    [SerializeField] private float boostIFrameLingerTime = 0.5f;
     public bool isBoosting = false;
+    public bool isBoostMove = false;
     private float boostValue;
     private float timeOfLastBoost;
 
@@ -127,7 +129,7 @@ public class PlayerController : MonoBehaviour
         // Model rotation
         model.transform.localEulerAngles = new Vector3(0.0f, Mathf.SmoothDamp(model.transform.localEulerAngles.y, -movement.x * 90.0f + 90.0f, ref rotationVelocity, 0.1f), 0.0f);
 
-        if (isBoosting)
+        if (isBoostMove)
             return;
 
         // Funky drifting clamp
@@ -166,6 +168,7 @@ public class PlayerController : MonoBehaviour
         boostValue -= 1.0f;
 
         isBoosting = true;
+        isBoostMove = true;
         rb.velocity = _boostDir.normalized * boostSpeed;
 
         boostVFX.Play();
@@ -173,7 +176,12 @@ public class PlayerController : MonoBehaviour
         boostVFX.transform.forward = _boostDir;
 
         yield return new WaitForSeconds(boostDuration);
+        isBoostMove = false;
+
+        yield return new WaitForSeconds(boostIFrameLingerTime);
+
         isBoosting = false;
+
     }
     public void HitPlayer(Bubble _bubble)
     {
