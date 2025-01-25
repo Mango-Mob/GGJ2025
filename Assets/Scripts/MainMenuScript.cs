@@ -16,6 +16,7 @@ public class MainMenuScript : MonoBehaviour
     public Slider MasterSlider;
     public Slider MusicSlider;
     public Slider SoundEffectSlider;
+    public Slider ContrastSlider;
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class MainMenuScript : MonoBehaviour
         MasterSlider.value = AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.MASTER];
         MusicSlider.value = AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.MUSIC];
         SoundEffectSlider.value = AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.SOUND_EFFECT];
+        ContrastScript.BubbleAlpha = PlayerPrefs.GetFloat($"contrast");
+        SoundEffectSlider.value = ContrastScript.BubbleAlpha;
     }
     // Update is called once per frame
     void Update()
@@ -37,24 +40,31 @@ public class MainMenuScript : MonoBehaviour
             AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.MASTER] = MasterSlider.value;
             AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.MUSIC] = MusicSlider.value;
             AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.SOUND_EFFECT] = SoundEffectSlider.value;
+            ContrastScript.BubbleAlpha = ContrastSlider.value;
         }
+    }
+    public void OnDestroy()
+    {
+        PlayerPrefs.SetFloat($"contrast", ContrastScript.BubbleAlpha);
     }
 
     public void PlayGame()
     {
         LevelManager.Instance.LoadNewLevel("GameScene");
+        GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
     }
 
     public void ShowSettings()
     {
         current_state = State.Settings;
+        GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
     }
 
     public void GoBackToMenu()
     {
         current_state = State.Menu;
+        GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
     }
-
     public void Quit()
     {
         Application.Quit();

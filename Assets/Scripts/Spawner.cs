@@ -13,13 +13,17 @@ public class Spawner : PausableObject
 
     public float safety_zone = 1.25f;
     public AnimationCurve time_till_next_bubble;
+    public AnimationCurve min_density;
+    public AnimationCurve max_density;
     public float time;
     public Animator dog_animator;
 
+    public GameObject player;
     private float timer;
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerController>().gameObject;
         cached_directions = GetDirections();
         Spawn();
     }
@@ -33,6 +37,9 @@ public class Spawner : PausableObject
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
+            if (Extentions.CircleVsCircle(player.transform.position, transform.position, safety_zone, 1))
+                return;
+
             var list = GameManager.Instance.GetBubblesInRange(transform.position, safety_zone);
             if (list.Count > 0)
                 return;
@@ -46,7 +53,7 @@ public class Spawner : PausableObject
         timer += time_till_next_bubble.Evaluate(time / 60.0f);
 
         var velocity = cached_directions[Random.Range(0, steps)] * Random.Range(2.5f, 3.0f);
-        var density = Random.Range(0.0f, 1.0f);
+        var density = Random.Range(min_density.Evaluate(time / 60.0f), min_density.Evaluate(time / 60.0f));
         var obj = GameManager.Instance.SpawnBubble(transform, transform.position, velocity, density);
         obj.GetComponent<Bubble>().PlaySpawnAnimation();
     }

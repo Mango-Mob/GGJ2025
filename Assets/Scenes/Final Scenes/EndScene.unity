@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 335921386}
   - component: {fileID: 335921385}
   - component: {fileID: 335921389}
+  - component: {fileID: 335921390}
   m_Layer: 5
   m_Name: EndUI
   m_TagString: Untagged
@@ -416,6 +417,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: {fileID: 1524261314}
   Timer: {fileID: 1825190373}
+--- !u!114 &335921390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335921384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024ecd21f977d0b4cbfd71ce0c41f316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localVolume: 1
+  isMuted: 0
+  is3D: 0
+  min3D_Dist: 1
+  max3D_Dist: 500
+  mainClip: {fileID: 8300000, guid: e38b4991e5efcd84d88fb0bb9096bdc2, type: 3}
+  channel: 1
+  isPlayOnAwake: 0
+  isLooping: 0
 --- !u!1 &435602738
 GameObject:
   m_ObjectHideFlags: 0

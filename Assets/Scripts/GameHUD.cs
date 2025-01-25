@@ -26,7 +26,7 @@ public class GameHUD : MonoBehaviour
     {
         score = GameManager.Instance.score;
         Score.text = score.ToString("00000");
-        time += Time.deltaTime;
+        time = GameManager.Instance.time;
 
         int minutes = (int)(time / 60);
         int seconds = (int)(time % 60);
