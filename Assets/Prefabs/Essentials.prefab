@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6928557625060022915}
-  smoothTime: 0.25
+  smoothTime: 0.1
   followFOV: 90
   zoomedFOV: 20
 --- !u!81 &6928557623653890963

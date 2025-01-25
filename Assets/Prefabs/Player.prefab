@@ -969,6 +969,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &297064638013228143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4267504006405471871}
+  m_Layer: 0
+  m_Name: ModelPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4267504006405471871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297064638013228143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5549268750575770667}
+  m_Father: {fileID: 5549268751174515372}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2919411628256145423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6024,7 +6055,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5549268750575770664}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -6032,7 +6063,7 @@ Transform:
   - {fileID: 5549268752175571948}
   - {fileID: 5549268751306801336}
   - {fileID: 5549268751837620523}
-  m_Father: {fileID: 5549268751174515372}
+  m_Father: {fileID: 4267504006405471871}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!95 &5549268750575770666
@@ -6472,7 +6503,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5549268750575770667}
+  - {fileID: 4267504006405471871}
   - {fileID: 5549268751473820330}
   - {fileID: 8244177694429941410}
   m_Father: {fileID: 0}
@@ -6495,7 +6526,7 @@ MonoBehaviour:
   smoothTime: 0.3
   minSpeed: 0.1
   bounceMult: 2
-  model: {fileID: 5549268750575770664}
+  model: {fileID: 297064638013228143}
   boostVFX: {fileID: 5549268751473820340}
   boostVFX2: {fileID: 6215958392104692583}
   rotationSmoothTime: 0.1
