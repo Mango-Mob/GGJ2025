@@ -11,7 +11,7 @@ public class Mosquito : PausableObject
     public float min_delay, max_delay;
     public GameObject AlarmPrefab;
     private GameObject CreatedAlarm;
-    private float timer = 0.0f;
+    public float timer = 0.0f;
     private float speed = 0.0f;
 
     private float right_edge, left_edge;
@@ -21,7 +21,8 @@ public class Mosquito : PausableObject
         left_edge = is_facing_right ? transform.position.x : (transform.position + transform.right * dist).x;
         right_edge = !is_facing_right ? transform.position.x : (transform.position + transform.right * dist).x;
 
-        timer = Random.Range(min_delay, max_delay);
+        if (timer <= 0.0f)
+            timer = Random.Range(min_delay, max_delay);
         speed = Random.Range(min_speed, max_speed);
 
         var renderer = GetComponentInChildren<MeshRenderer>();
@@ -39,7 +40,7 @@ public class Mosquito : PausableObject
             timer -= Time.deltaTime;
             GetComponentInChildren<Collider>().enabled = timer <= 0.0f;
 
-            if (!CreatedAlarm && timer <= min_delay * 1.5f)
+            if (!CreatedAlarm && timer <= min_delay * 2f)
             {
                 CreatedAlarm = GameObject.Instantiate(AlarmPrefab, transform);
                 CreatedAlarm.transform.position = transform.position + (is_facing_right ? -transform.right : transform.right);
