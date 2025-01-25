@@ -84,7 +84,8 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ResetToStart());
         }
 
-        CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
+        if (!isResetting)
+            CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
         
         boostUI.SetVisible(!isStunned && !isDead && !isResetting);
         breakoutUI.SetVisible(isStunned && !isDead && !isResetting);
@@ -278,6 +279,11 @@ public class PlayerController : MonoBehaviour
     {
         isResetting = true;
 
+        if (GameManager.Instance)
+            GameManager.Instance.TogglePause();
+
+        CameraController.instance.SetCameraState(CameraController.CameraState.OBJECTIVE);
+
         // Get direction to start
         Vector3 startPos = new Vector3(0.0f, startHeight, transform.position.z);
 
@@ -299,13 +305,17 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = Vector3.zero;
 
+        // Wait for dog animation
+        yield return new WaitForEndOfFrame();
+
+        if (GameManager.Instance)
+            GameManager.Instance.TogglePause();
+
         model.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-
-        //animator.SetBool("IsResetting", false);
-
         timeOfReset = Time.time;
-
         isResetting = false;
+
+        CameraController.instance.SetCameraState(CameraController.CameraState.FOLLOW);
     }
     private void OnTriggerEnter(Collider other)
     {
