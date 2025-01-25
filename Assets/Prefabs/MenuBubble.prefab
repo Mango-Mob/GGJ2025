@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013d2f1b59b0f71408bb9ba816659dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localVolume: 1
+  localVolume: 0.6
   isMuted: 0
   is3D: 0
   min3D_Dist: 1

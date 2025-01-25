@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-
-
 
 public class MenuBubble : PausableObject
 {
@@ -35,7 +32,7 @@ public class MenuBubble : PausableObject
     void Start()
     {
         if (density >= max_density)
-            Pop();
+            Pop(true);
         else
             global_list.Add(this);
     }
@@ -53,10 +50,10 @@ public class MenuBubble : PausableObject
             immune -= Time.deltaTime;
 
         if(transform.position.y >= fixed_height || transform.localPosition.y < 0 )
-            Pop();
+            Pop(false);
 
         if (density >= max_density)
-            Pop();
+            Pop(true);
     }
 
     private void OnDestroy()
@@ -115,7 +112,7 @@ public class MenuBubble : PausableObject
         pos = speedCurve.EvaluateInverse(rigid.velocity.y / max_speed.Evaluate(density));
     }
 
-    public void Pop()
+    public void Pop( bool play_audio )
     {
         gameObject.GetComponent<Collider>().enabled = false;
         var rigid = GetComponent<Rigidbody>();
@@ -132,7 +129,8 @@ public class MenuBubble : PausableObject
         }
 
         popEffect.SetActive(true);
-        popEffect.GetComponent<MultiAudioAgent>().PlayRandom(false, Random.Range(0.75f, 1.25f));
+        if(play_audio)
+            popEffect.GetComponent<MultiAudioAgent>().PlayRandom(false, Random.Range(0.75f, 1.25f));
         popEffect.transform.parent = null;
         popEffect.GetComponent<VFXTimerScript>().m_startedTimer = true;
         Destroy(gameObject);

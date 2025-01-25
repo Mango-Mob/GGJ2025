@@ -20,7 +20,7 @@ public class BubblePopper : MonoBehaviour
             if(Physics.Raycast(ray, out hit)) 
             {
                 if (hit.collider.tag == "Bubble") 
-                    hit.collider.GetComponent<MenuBubble>().Pop();
+                    hit.collider.GetComponent<MenuBubble>().Pop(true);
             }
         }
     }
