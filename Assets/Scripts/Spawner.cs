@@ -36,7 +36,8 @@ public class Spawner : PausableObject
 
         var velocity = cached_directions[Random.Range(0, steps)] * Random.Range(2.5f, 3.0f);
         var density = Random.Range(0.0f, 1.0f);
-        GameManager.Instance.SpawnBubble(transform, transform.position, velocity, density);
+        var obj = GameManager.Instance.SpawnBubble(transform, transform.position, velocity, density);
+        obj.GetComponent<Bubble>().PlaySpawnAnimation();
     }
 
     public void Flip()

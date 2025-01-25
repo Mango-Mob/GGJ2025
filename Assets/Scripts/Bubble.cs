@@ -13,7 +13,6 @@ public class Bubble : PausableObject
     const float gravity = -2.4f;
     const float fixed_height = 7.15f; // max speed is height in 1 second
     const float max_speed = fixed_height * 0.5f;
-    float spawn_delay = 0.25f;
 
     private Vector3 cached_velocity;
     public float pos = 0.0f;
@@ -30,7 +29,10 @@ public class Bubble : PausableObject
     {
         if (density >= 1.5f)
             Pop(false);
-
+    }
+    public void PlaySpawnAnimation()
+    {
+        GetComponent<Animator>().Play("Spawn");
     }
 
     private void Update()
@@ -108,9 +110,9 @@ public class Bubble : PausableObject
 
         }
 
+        popEffect.SetActive(true);
         popEffect.transform.parent = null;
         popEffect.GetComponent<VFXTimerScript>().m_startedTimer = true;
-        popEffect.GetComponent<SpriteRenderer>().enabled = true;
         Destroy(gameObject);
     }
 
