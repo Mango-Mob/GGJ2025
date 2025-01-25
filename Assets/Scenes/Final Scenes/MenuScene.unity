@@ -3185,10 +3185,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1481641325, guid: bcbe502a625da5141a2d41456ee544cc, type: 3}
-      propertyPath: volumes.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 83942764246345675, guid: bcbe502a625da5141a2d41456ee544cc, type: 3}
       propertyPath: m_Name
       value: Managers
