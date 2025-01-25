@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PausableObject : MonoBehaviour
 {
-    public static bool is_paused = false;
+    public bool is_paused = false;
 
     public void TogglePause()
     {

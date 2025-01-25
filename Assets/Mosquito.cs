@@ -5,6 +5,7 @@ using UnityEngine;
 public class Mosquito : MonoBehaviour
 {
     public float dist;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {

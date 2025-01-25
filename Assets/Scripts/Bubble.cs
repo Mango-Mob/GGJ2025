@@ -72,7 +72,10 @@ public class Bubble : PausableObject
 
         if(collider.gameObject.tag == "Player")
         {
-            collider.GetComponent<PlayerController>().HitPlayer(this);
+            var player = collider.GetComponent<PlayerController>();
+            if(!player.isBoosting)
+                player.HitPlayer(this);
+            return;
         }
 
         rigid.velocity = speed;

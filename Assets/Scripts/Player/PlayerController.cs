@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boostDuration = 0.5f;
     [SerializeField] private float boostCooldown = 0.5f;
     [SerializeField] private float boostRechargeSpeed = 0.2f;
-    private bool isBoosting = false;
+    public bool isBoosting = false;
     private float boostValue;
     private float timeOfLastBoost;
 
