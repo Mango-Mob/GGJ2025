@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float breakSpeed = 0.1f;
     private float health = 1.0f;
     private bool isStunned = false;
+    private bool isDead = false;
 
     // Other scripts
     private BoostUI boostUI;
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Stun(null));
         }
 
-        CameraController.instance.SetCameraState(isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW);
+        CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
         boostUI.SetVisible(!isStunned);
         breakoutUI.SetVisible(isStunned);
         breakoutUI.SetHealth(health);
@@ -175,6 +176,13 @@ public class PlayerController : MonoBehaviour
         float breakHealth = 1.0f;
         rb.velocity = Vector3.zero;
 
+        if (GameManager.Instance)
+            GameManager.Instance.TogglePause();
+
+        // Teleport bubble
+        if (_bubble)
+            _bubble.transform.position = transform.position;
+
         int lastDirection = 0;
 
         while (breakHealth > 0.0f)
@@ -197,8 +205,34 @@ public class PlayerController : MonoBehaviour
             }
             health -= healthDrain * Time.deltaTime;
 
+            if (health <= 0.0f)
+            {
+                // Kill player
+                isDead = true;
+                animator.SetBool("IsDead", true);
+
+                if (GameManager.Instance)
+                    GameManager.Instance.TogglePause();
+
+                while (true)
+                {
+                    if (_bubble != null)
+                    {
+                        transform.position = _bubble.transform.position;
+                    }
+                    else
+                    {
+                        rb.useGravity = true;
+                    }
+
+                    yield return new WaitForEndOfFrame();
+                }
+            }
             yield return new WaitForEndOfFrame();
         }
+
+        if (GameManager.Instance)
+            GameManager.Instance.TogglePause();
 
         _bubble?.Pop(false);
 

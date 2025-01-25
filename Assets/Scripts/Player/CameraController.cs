@@ -48,6 +48,9 @@ public class CameraController : MonoBehaviour
                 SetFOV(Mathf.SmoothDamp(currentFOV, zoomedFOV, ref fovVelocity, 0.1f));
                 break;
             case CameraState.DEAD:
+                targetPos = new Vector3(0.0f, transform.position.y, transform.position.z);
+                transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+                SetFOV(Mathf.SmoothDamp(currentFOV, followFOV, ref fovVelocity, 0.1f));
                 break;
             default:
                 break;
