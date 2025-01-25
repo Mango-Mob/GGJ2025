@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public static CameraController instance;
 
     [SerializeField] private Transform target;
+    [SerializeField] private Transform objectiveTarget;
     [SerializeField] private float smoothTime = 0.2f;
     [SerializeField] private float followFOV = 90.0f;
     [SerializeField] private float zoomedFOV = 90.0f;
@@ -23,6 +24,7 @@ public class CameraController : MonoBehaviour
         FOLLOW,
         ZOOMED,
         DEAD,
+        OBJECTIVE,
     }
 
     // Start is called before the first frame update
@@ -48,8 +50,13 @@ public class CameraController : MonoBehaviour
                 transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
                 SetFOV(Mathf.SmoothDamp(currentFOV, zoomedFOV, ref fovVelocity, 0.1f));
                 break;
+            case CameraState.OBJECTIVE:
+                targetPos = new Vector3(objectiveTarget.position.x, objectiveTarget.position.y, transform.position.z);
+                transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+                SetFOV(Mathf.SmoothDamp(currentFOV, followFOV, ref fovVelocity, 0.1f));
+                break;
             case CameraState.DEAD:
-                targetPos = new Vector3(0.0f, transform.position.y, transform.position.z);
+                targetPos = new Vector3(0.0f, target.position.y, transform.position.z);
                 transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
                 SetFOV(Mathf.SmoothDamp(currentFOV, followFOV, ref fovVelocity, 0.1f));
                 break;

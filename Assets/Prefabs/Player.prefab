@@ -11393,7 +11393,7 @@ MonoBehaviour:
   minSpeed: 0.1
   bounceMult: 2
   startHeight: 18.5
-  resetSpeed: 12
+  resetSpeed: 2.5
   resetRotateSpeed: 360
   enemyShoveSpeed: 10
   model: {fileID: 297064638013228143}
@@ -11411,6 +11411,7 @@ MonoBehaviour:
   isBoostMove: 0
   healthDrain: 0.15
   breakSpeed: 0.1
+  isDead: 0
 --- !u!135 &5549268751174515362
 SphereCollider:
   m_ObjectHideFlags: 0

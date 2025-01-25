@@ -97,4 +97,10 @@ public class Spawner : PausableObject
     {
         
     }
+
+    public void PlayDogoCinematic()
+    {
+        dog_animator.SetTrigger("Wake up");
+        dog_animator.SetInteger("played", dog_animator.GetInteger("played") + 1);
+    }
 }

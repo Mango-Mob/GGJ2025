@@ -189,8 +189,81 @@ MonoBehaviour:
   min_speed: 8
   max_speed: 16
   is_facing_right: 1
-  min_delay: 1
-  max_delay: 3.5
+  min_delay:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2
+      inSlope: -0.5
+      outSlope: -0.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1.5
+      inSlope: -0.475
+      outSlope: -0.475
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3
+      value: 0.6
+      inSlope: -0.45
+      outSlope: -0.45
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  max_delay:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 4
+      inSlope: -2.7019076
+      outSlope: -2.7019076
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.70374465
+    - serializedVersion: 3
+      time: 0.25
+      value: 3.5
+      inSlope: -1.7398553
+      outSlope: -1.7398553
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.8719649
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 3
+      inSlope: -0.35584015
+      outSlope: -0.35584015
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.17940515
+    - serializedVersion: 3
+      time: 3
+      value: 2.6
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   warning_time: 1.2
   AlarmPrefab: {fileID: 5822025326677310494, guid: f129f9017cbbf0b42848a6f5aa9bf5dc, type: 3}
   timer: 0

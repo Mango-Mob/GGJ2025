@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float resetSpeed = 12.0f;
     [SerializeField] private float resetRotateSpeed = 360.0f;
     [SerializeField] private float enemyShoveSpeed = 10.0f;
+    private int reset_count = 0;
 
     [Header("Visuals")]
     [SerializeField] private GameObject model;
@@ -84,7 +85,8 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ResetToStart());
         }
 
-        CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
+        if (!isResetting)
+            CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
         
         boostUI.SetVisible(!isStunned && !isDead && !isResetting);
         breakoutUI.SetVisible(isStunned && !isDead && !isResetting);
@@ -278,6 +280,11 @@ public class PlayerController : MonoBehaviour
     {
         isResetting = true;
 
+        if (GameManager.Instance)
+            GameManager.Instance.TogglePause();
+
+        CameraController.instance.SetCameraState(CameraController.CameraState.OBJECTIVE);
+
         // Get direction to start
         Vector3 startPos = new Vector3(0.0f, startHeight, transform.position.z);
 
@@ -292,20 +299,25 @@ public class PlayerController : MonoBehaviour
             //transform.position = Vector3.MoveTowards(transform.position, startPos, resetSpeed * Time.deltaTime);
             model.transform.localEulerAngles = new Vector3(0.0f, model.transform.localEulerAngles.y - resetRotateSpeed * Time.deltaTime, 0.0f);
 
-            rb.velocity = (startPos - transform.position).normalized * resetSpeed;
+            rb.velocity = (startPos - transform.position).normalized * resetSpeed * (reset_count <= 0 ? 1.0f : 1.5f);
 
             yield return new WaitForEndOfFrame();
         }
 
         rb.velocity = Vector3.zero;
 
+        // Wait for dog animation
+        yield return new WaitForEndOfFrame();
+
+        if (GameManager.Instance)
+            GameManager.Instance.TogglePause();
+
         model.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-
-        //animator.SetBool("IsResetting", false);
-
         timeOfReset = Time.time;
-
         isResetting = false;
+        reset_count++;
+
+        CameraController.instance.SetCameraState(CameraController.CameraState.FOLLOW);
     }
     private void OnTriggerEnter(Collider other)
     {

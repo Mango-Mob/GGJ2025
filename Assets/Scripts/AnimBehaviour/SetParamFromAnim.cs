@@ -25,7 +25,7 @@ public class SetParamFromAnim : StateMachineBehaviour
                     animator.SetFloat(paramName, paramVal);
                     break;
                 case ParamType.BOOL:
-                    animator.SetBool(paramName, Mathf.FloorToInt(paramVal) == 0);
+                    animator.SetBool(paramName, Mathf.FloorToInt(paramVal) == 1);
                     break;
                 case ParamType.TRIG:
                     animator.SetTrigger(paramName);
@@ -56,7 +56,7 @@ public class SetParamFromAnim : StateMachineBehaviour
                     animator.SetFloat(paramName, paramVal);
                     break;
                 case ParamType.BOOL:
-                    animator.SetBool(paramName, Mathf.FloorToInt(paramVal) == 0);
+                    animator.SetBool(paramName, Mathf.FloorToInt(paramVal) == 1);
                     break;
                 case ParamType.TRIG:
                     animator.SetTrigger(paramName);
