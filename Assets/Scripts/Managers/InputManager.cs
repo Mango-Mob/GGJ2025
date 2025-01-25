@@ -164,18 +164,6 @@ public class InputManager : SingletonPersistent<InputManager>
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MenuScene" || SceneManager.GetActiveScene().name == "EndScreen")
-        {
-            InputManager.Instance.cursorMode = CursorLockMode.None;
-            InputManager.Instance.isCursorVisible = true;
-        }
-        else
-        {
-            InputManager.Instance.cursorMode = CursorLockMode.Locked;
-            InputManager.Instance.isCursorVisible = false;
-        }
-
-
         Cursor.lockState = cursorMode;
         Cursor.visible = isCursorVisible;
 

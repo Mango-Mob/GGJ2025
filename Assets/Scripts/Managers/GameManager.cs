@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
 
     public AnimationCurve DensityScaleCurve;
     public GameObject bubble_prefab;
+    public int score;
 
     protected override void Awake()
     {

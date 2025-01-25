@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawnner : PausableObject
+public class Spawner : PausableObject
 {
     public int min_angle = -30;
     public int max_angle = 60;
