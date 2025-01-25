@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float smoothTime = 0.2f;
     [SerializeField] private float followFOV = 90.0f;
     [SerializeField] private float zoomedFOV = 90.0f;
+    [SerializeField] Camera uiCamera;
     private Vector3 velocity;
     private float fovVelocity;
     
@@ -64,5 +65,7 @@ public class CameraController : MonoBehaviour
     {
         currentFOV = _fov;
         thisCamera.fieldOfView = Camera.HorizontalToVerticalFieldOfView(currentFOV, thisCamera.aspect);
+
+        uiCamera.fieldOfView = thisCamera.fieldOfView;
     }
 }
