@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 861786067003161442}
   - component: {fileID: 861786067003161443}
   - component: {fileID: 6365091303535450923}
-  - component: {fileID: 8610735236082349864}
+  - component: {fileID: 9217622341244892391}
   m_Layer: 0
   m_Name: PopEffect
   m_TagString: Untagged
@@ -120,7 +120,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8610735236082349864
+--- !u!114 &9217622341244892391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013d2f1b59b0f71408bb9ba816659dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localVolume: 0.4
+  localVolume: 1
   isMuted: 0
   is3D: 0
   min3D_Dist: 1
@@ -152,12 +152,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 861786067704301149}
-  - component: {fileID: 861786067704301139}
+  - component: {fileID: 1216624625585074178}
   - component: {fileID: -7762570472780925070}
   - component: {fileID: -7120990565060393724}
   - component: {fileID: 7754291145980479547}
   m_Layer: 0
-  m_Name: Bubble
+  m_Name: MenuBubble
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &861786067704301139
+--- !u!114 &1216624625585074178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 861786067704301136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5108e598f770d4288b496c656fcbdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9774552732183f34f9676a2229a6a582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   is_paused: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   popEffect: {fileID: 861786067003161441}
-  fixed_height: 16.5
+  fixed_height: 8
   max_speed:
     serializedVersion: 2
     m_Curve:

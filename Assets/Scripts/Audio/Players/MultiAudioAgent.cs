@@ -99,6 +99,20 @@ public class MultiAudioAgent : AudioAgent
         return false;
     }
 
+    public bool PlayRandom(bool isLooping = false, float pitch = 1.0f)
+    {
+        AudioPlayer player = GetAvailablePlayer();
+        if (player != null)
+        {
+            player.SetClip(audioClips[UnityEngine.Random.Range(0, audioClips.Count)]);
+            player.SetLooping(isLooping);
+            player.SetPitch(pitch);
+            player.Play();
+            return true;
+        }
+        return false;
+    }
+
     public bool PlayOnce(string clipName, bool isLooping = false, float pitch = 1.0f)
     {
         AudioClip clip;

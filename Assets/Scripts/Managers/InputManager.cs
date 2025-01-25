@@ -1152,6 +1152,27 @@ public class InputManager : SingletonPersistent<InputManager>
     /// </summary>
     /// <param name="button"></param>
     /// <returns></returns>
+    public bool GetMouseUp(MouseButton button)
+    {
+        switch (button)
+        {
+            default:
+                Debug.LogWarning($"Unsupported mouse button type in GetMouseDown.");
+                return false;
+            case MouseButton.LEFT:
+                return mouse.leftButton.wasReleasedThisFrame;
+
+            case MouseButton.RIGHT:
+                return mouse.rightButton.wasReleasedThisFrame;
+        }
+
+    }
+
+    /// <summary>
+    /// Checking if the mouse button is down
+    /// </summary>
+    /// <param name="button"></param>
+    /// <returns></returns>
     public bool GetMouseDown(MouseButton button)
     {
         switch (button)
