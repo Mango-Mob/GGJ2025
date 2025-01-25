@@ -24,6 +24,7 @@ public class Bubble : PausableObject
         } 
     }
 
+    private bool is_colliding_with_player = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +50,7 @@ public class Bubble : PausableObject
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (!collider.enabled)
+        if (!collider.enabled || is_colliding_with_player)
             return;
 
         var speed = rigid.velocity;
@@ -71,8 +72,16 @@ public class Bubble : PausableObject
             Destroy(collider.gameObject);
         }
 
-        if(collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Enemy")
         {
+            gameObject.GetComponent<Collider>().enabled = false;
+            Pop(true);
+            return;
+        }
+
+        if (collider.gameObject.tag == "Player")
+        {
+            is_colliding_with_player = true;
             var player = collider.GetComponent<PlayerController>();
             if (!player.isBoosting)
                 player.HitPlayer(this);
@@ -109,6 +118,7 @@ public class Bubble : PausableObject
 
     public void Pop( bool allow_splitting )
     {
+        gameObject.GetComponent<Collider>().enabled = false;
         var rigid = GetComponent<Rigidbody>();
         rigid.velocity = Vector3.zero;
         if (allow_splitting)
