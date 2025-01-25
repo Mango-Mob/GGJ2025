@@ -215,10 +215,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essentials
       objectReference: {fileID: 0}
-    - target: {fileID: 6928557625060022915, guid: c464f6ef929c2c04fa40f9b67796e167, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c464f6ef929c2c04fa40f9b67796e167, type: 3}
 --- !u!20 &295767090 stripped

@@ -23,6 +23,9 @@ public class Mosquito : PausableObject
 
         timer = Random.Range(min_delay, max_delay);
         speed = Random.Range(min_speed, max_speed);
+
+        var renderer = GetComponentInChildren<MeshRenderer>();
+        renderer.material = new Material(renderer.material);
     }
 
     // Update is called once per frame
@@ -40,11 +43,17 @@ public class Mosquito : PausableObject
             {
                 CreatedAlarm = GameObject.Instantiate(AlarmPrefab, transform);
                 CreatedAlarm.transform.position = transform.position + (is_facing_right ? -transform.right : transform.right);
+                var renderer = GetComponentInChildren<MeshRenderer>();
+                renderer.material.SetInt("_Flash", 1);
             }
             return;
         }
         else if (CreatedAlarm)
+        {
+            var renderer = GetComponentInChildren<MeshRenderer>();
+            renderer.material.SetInt("_Flash", 0);
             Destroy(CreatedAlarm);
+        }
 
         var side = is_facing_right ? -1 : 1;
         transform.position += side * transform.right * speed * Time.deltaTime;
@@ -56,6 +65,7 @@ public class Mosquito : PausableObject
             timer = Random.Range(min_delay, max_delay);
             speed = Random.Range(min_speed, max_speed);
             transform.localScale = new Vector3(-1, 1, 1);
+            transform.position = new Vector3(right_edge, transform.position.y, transform.position.z);
         }
         else if (!is_facing_right && transform.position.x >= left_edge )
         {
@@ -63,6 +73,7 @@ public class Mosquito : PausableObject
             timer = Random.Range(min_delay, max_delay);
             speed = Random.Range(min_speed, max_speed);
             transform.localScale = new Vector3(1, 1, 1);
+            transform.position = new Vector3(left_edge, transform.position.y, transform.position.z);
         }
     }
 
