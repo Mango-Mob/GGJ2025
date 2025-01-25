@@ -89,6 +89,7 @@ public class Bubble : PausableObject
         if (collider.gameObject.tag == "Player")
         {
             is_colliding_with_player = true;
+            gameObject.GetComponent<Collider>().enabled = false;
             var player = collider.GetComponent<PlayerController>();
             if (!player.isBoosting)
                 player.HitPlayer(this);

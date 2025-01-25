@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class BubblePopper : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    public bool is_listening = true;
     // Update is called once per frame
     void Update()
     {
+        if (!is_listening)
+            return;
+
         if (InputManager.Instance.GetMousePress(MouseButton.LEFT))
         {
             RaycastHit hit;

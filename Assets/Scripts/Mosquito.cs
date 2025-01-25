@@ -8,7 +8,7 @@ public class Mosquito : PausableObject
     public float min_speed, max_speed;
     public bool is_facing_right = true;
 
-    public float min_delay, max_delay;
+    public AnimationCurve min_delay, max_delay;
     public float warning_time = 1.2f;
     public GameObject AlarmPrefab;
     private GameObject CreatedAlarm;
@@ -23,7 +23,7 @@ public class Mosquito : PausableObject
         right_edge = !is_facing_right ? transform.position.x : (transform.position + transform.right * dist).x;
 
         if (timer <= 0.0f)
-            timer = Random.Range(min_delay, max_delay);
+            timer = Random.Range(min_delay.Evaluate(GameManager.Instance.time / 60.0f), max_delay.Evaluate(GameManager.Instance.time / 60.0f));
         speed = Random.Range(min_speed, max_speed);
 
         var renderer = GetComponentInChildren<MeshRenderer>();
@@ -41,7 +41,7 @@ public class Mosquito : PausableObject
             timer -= Time.deltaTime;
             GetComponentInChildren<Collider>().enabled = timer <= 0.0f;
 
-            if (!CreatedAlarm && timer <= warning_time)
+            if (!CreatedAlarm && timer <= Mathf.Min(warning_time, min_delay.Evaluate(GameManager.Instance.time / 60.0f)))
             {
                 CreatedAlarm = GameObject.Instantiate(AlarmPrefab, transform);
                 CreatedAlarm.transform.position = transform.position + (is_facing_right ? -transform.right : transform.right);
@@ -65,7 +65,7 @@ public class Mosquito : PausableObject
         if (is_facing_right && transform.position.x <= right_edge)
         {
             is_facing_right = false;
-            timer = Random.Range(min_delay, max_delay);
+            timer = Random.Range(min_delay.Evaluate(GameManager.Instance.time / 60.0f), max_delay.Evaluate(GameManager.Instance.time / 60.0f));
             speed = Random.Range(min_speed, max_speed);
             transform.localScale = new Vector3(-1, 1, 1);
             transform.position = new Vector3(right_edge, transform.position.y, transform.position.z);
@@ -74,7 +74,7 @@ public class Mosquito : PausableObject
         else if (!is_facing_right && transform.position.x >= left_edge )
         {
             is_facing_right = true;
-            timer = Random.Range(min_delay, max_delay);
+            timer = Random.Range(min_delay.Evaluate(GameManager.Instance.time / 60.0f), max_delay.Evaluate(GameManager.Instance.time / 60.0f));
             speed = Random.Range(min_speed, max_speed);
             transform.localScale = new Vector3(1, 1, 1);
             transform.position = new Vector3(left_edge, transform.position.y, transform.position.z);

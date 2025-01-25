@@ -18,6 +18,7 @@ public class MainMenuScript : MonoBehaviour
     public Slider SoundEffectSlider;
     public Slider ContrastSlider;
 
+    public BubblePopper popper;
     private void Start()
     {
         InputManager.Instance.isCursorVisible = true;
@@ -47,6 +48,12 @@ public class MainMenuScript : MonoBehaviour
     {
         PlayerPrefs.SetFloat($"contrast", ContrastScript.BubbleAlpha);
     }
+    public void TogglePause()
+    {
+        var pausables = FindObjectsOfType<PausableObject>();
+        foreach (var pausable in pausables)
+            pausable.TogglePause();
+    }
 
     public void PlayGame()
     {
@@ -58,12 +65,16 @@ public class MainMenuScript : MonoBehaviour
     {
         current_state = State.Settings;
         GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
+        popper.is_listening = false;
+        TogglePause();
     }
 
     public void GoBackToMenu()
     {
         current_state = State.Menu;
         GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
+        popper.is_listening = true;
+        TogglePause();
     }
     public void Quit()
     {
