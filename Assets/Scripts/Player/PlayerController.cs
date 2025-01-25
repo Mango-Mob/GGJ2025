@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float startHeight = 10.0f;
     [SerializeField] private float resetSpeed = 12.0f;
     [SerializeField] private float resetRotateSpeed = 360.0f;
+    [SerializeField] private float enemyShoveSpeed = 10.0f;
 
     [Header("Visuals")]
     [SerializeField] private GameObject model;
@@ -34,7 +35,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boostDuration = 0.5f;
     [SerializeField] private float boostCooldown = 0.5f;
     [SerializeField] private float boostRechargeSpeed = 0.2f;
+    [SerializeField] private float boostIFrameLingerTime = 0.5f;
     public bool isBoosting = false;
+    public bool isBoostMove = false;
     private float boostValue;
     private float timeOfLastBoost;
 
@@ -45,6 +48,7 @@ public class PlayerController : MonoBehaviour
     private bool isStunned = false;
     private bool isDead = false;
     private bool isResetting = false;
+    private float timeOfReset;
 
     // Other scripts
     private BoostUI boostUI;
@@ -125,7 +129,7 @@ public class PlayerController : MonoBehaviour
         // Model rotation
         model.transform.localEulerAngles = new Vector3(0.0f, Mathf.SmoothDamp(model.transform.localEulerAngles.y, -movement.x * 90.0f + 90.0f, ref rotationVelocity, 0.1f), 0.0f);
 
-        if (isBoosting)
+        if (isBoostMove)
             return;
 
         // Funky drifting clamp
@@ -147,7 +151,6 @@ public class PlayerController : MonoBehaviour
 
         Move(movement);
     }
-
     public void Move(Vector2 _move)
     {
         rb.velocity = Vector2.SmoothDamp(rb.velocity, _move * maxSpeed, ref velocity, smoothTime);
@@ -165,6 +168,7 @@ public class PlayerController : MonoBehaviour
         boostValue -= 1.0f;
 
         isBoosting = true;
+        isBoostMove = true;
         rb.velocity = _boostDir.normalized * boostSpeed;
 
         boostVFX.Play();
@@ -172,11 +176,16 @@ public class PlayerController : MonoBehaviour
         boostVFX.transform.forward = _boostDir;
 
         yield return new WaitForSeconds(boostDuration);
+        isBoostMove = false;
+
+        yield return new WaitForSeconds(boostIFrameLingerTime);
+
         isBoosting = false;
+
     }
     public void HitPlayer(Bubble _bubble)
     {
-        if (!isStunned && !isResetting)
+        if (!isStunned && !isResetting && timeOfReset < Time.time + 0.5f) 
         {
             StartCoroutine(Stun(_bubble));
         }
@@ -227,6 +236,9 @@ public class PlayerController : MonoBehaviour
                 if (GameManager.Instance)
                     GameManager.Instance.TogglePause();
 
+                float timeOfDeath = Time.time;
+                bool loadedLevel = false;
+
                 while (true)
                 {
                     if (_bubble != null)
@@ -237,6 +249,12 @@ public class PlayerController : MonoBehaviour
                     {
                         rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
                         rb.useGravity = true;
+                    }
+
+                    if (Time.time > timeOfDeath + 3.0f && !loadedLevel)
+                    {
+                        LevelManager.Instance.LoadNewLevel("EndScene");
+                        loadedLevel = true;
                     }
 
                     yield return new WaitForEndOfFrame();
@@ -262,6 +280,10 @@ public class PlayerController : MonoBehaviour
 
         //animator.SetBool("IsResetting", true);
 
+        scoreVFX.Play();
+        if (GameManager.Instance)
+            GameManager.Instance.score += 500;
+
         while (transform.position.y < startPos.y)
         {
             //transform.position = Vector3.MoveTowards(transform.position, startPos, resetSpeed * Time.deltaTime);
@@ -278,14 +300,14 @@ public class PlayerController : MonoBehaviour
 
         //animator.SetBool("IsResetting", false);
 
-        scoreVFX.Play();
+        timeOfReset = Time.time;
 
         isResetting = false;
     }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Entered");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && !isResetting)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && !isResetting && !isDead)
         {
             Debug.Log("Objective Entered");
             StartCoroutine(ResetToStart());
@@ -293,10 +315,13 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        return;
-
         Debug.Log("Collided");
-        Vector3 relativeVel = collision.relativeVelocity;
-        rb.velocity = new Vector3(-relativeVel.x * bounceMult, relativeVel.y, 0.0f);
+        if (collision.transform.tag == "Enemy")
+        {
+            Vector3 direction = transform.position - collision.transform.position;
+            rb.velocity = direction.normalized * enemyShoveSpeed;
+        }
+
+        return;
     }
 }
