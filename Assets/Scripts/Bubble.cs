@@ -73,8 +73,11 @@ public class Bubble : PausableObject
         if(collider.gameObject.tag == "Player")
         {
             var player = collider.GetComponent<PlayerController>();
-            if(!player.isBoosting)
+            if (!player.isBoosting)
                 player.HitPlayer(this);
+            else
+                Pop(false);
+
             return;
         }
 
