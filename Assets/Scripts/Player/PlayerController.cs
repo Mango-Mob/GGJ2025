@@ -263,6 +263,10 @@ public class PlayerController : MonoBehaviour
 
         //animator.SetBool("IsResetting", true);
 
+        scoreVFX.Play();
+        if (GameManager.Instance)
+            GameManager.Instance.score += 500;
+
         while (transform.position.y < startPos.y)
         {
             //transform.position = Vector3.MoveTowards(transform.position, startPos, resetSpeed * Time.deltaTime);
@@ -278,10 +282,6 @@ public class PlayerController : MonoBehaviour
         model.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
         //animator.SetBool("IsResetting", false);
-
-        scoreVFX.Play();
-        if (GameManager.Instance)
-            GameManager.Instance.score += 500;
 
         timeOfReset = Time.time;
 
