@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
     private bool isResetting = false;
     private float timeOfReset;
 
+    [SerializeField] private MultiAudioAgent audioAgent;
+
     // Other scripts
     private BoostUI boostUI;
     private BreakoutUI breakoutUI;
@@ -75,15 +77,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartCoroutine(Stun(null));
-        }
-        if (Input.GetKeyDown(KeyCode.R) && !isResetting)
-        {
-            Debug.Log("Resetting");
-            StartCoroutine(ResetToStart());
-        }
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    StartCoroutine(Stun(null));
+        //}
+        //if (Input.GetKeyDown(KeyCode.R) && !isResetting)
+        //{
+        //    Debug.Log("Resetting");
+        //    StartCoroutine(ResetToStart());
+        //}
 
         if (!isResetting)
             CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
@@ -162,9 +164,12 @@ public class PlayerController : MonoBehaviour
         if (boostValue < 1.0f || Time.time < timeOfLastBoost + boostCooldown)
         {
             // Can not dash - either on cooldown or not enough resource
+            audioAgent.Play("DashNotReady", false, Random.Range(0.75f, 1.25f));
 
             yield break;
         }
+
+        audioAgent.Play("Dash", false, Random.Range(0.75f, 1.25f));
 
         timeOfLastBoost = Time.time;
         boostValue -= 1.0f;
@@ -210,6 +215,10 @@ public class PlayerController : MonoBehaviour
         int lastDirection = 0;
         breakoutUI.SetNextInput(0);
 
+        audioAgent.Play("OnHitSound", false, Random.Range(0.75f, 1.25f));
+
+        audioAgent.Play("Struggle", false, Random.Range(0.75f, 1.25f));
+
         while (breakHealth > 0.0f)
         {
             bool breaking = false;
@@ -234,6 +243,9 @@ public class PlayerController : MonoBehaviour
 
             if (health <= 0.0f)
             {
+                // End sound
+                audioAgent.StopAudio("Struggle");
+
                 // Kill player
                 isDead = true;
                 animator.SetBool("IsDead", true);
@@ -268,6 +280,8 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        audioAgent.StopAudio("Struggle");
+
         if (GameManager.Instance)
             GameManager.Instance.TogglePause();
 
@@ -290,7 +304,10 @@ public class PlayerController : MonoBehaviour
 
         //animator.SetBool("IsResetting", true);
 
+        audioAgent.Play("Score", false, Random.Range(0.75f, 1.25f));
+
         scoreVFX.Play();
+
         if (GameManager.Instance)
             GameManager.Instance.score += 500;
 
@@ -334,8 +351,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Collided");
         if (collision.transform.tag == "Enemy")
         {
+            audioAgent.Play("MosquitoHit", false, Random.Range(0.75f, 1.25f));
             Vector3 direction = transform.position - collision.transform.position;
             rb.velocity = direction.normalized * enemyShoveSpeed;
+
+            boostValue -= 1.0f;
+            boostValue = Mathf.Clamp(boostValue, 0.0f, 2.0f);
         }
 
         return;
