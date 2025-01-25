@@ -189,8 +189,8 @@ MonoBehaviour:
   min_speed: 8
   max_speed: 16
   is_facing_right: 1
-  min_delay: 0.6
-  max_delay: 3.2
+  min_delay: 1
+  max_delay: 3.5
   AlarmPrefab: {fileID: 5822025326677310494, guid: f129f9017cbbf0b42848a6f5aa9bf5dc, type: 3}
   timer: 0
 --- !u!114 &4251250217876212329

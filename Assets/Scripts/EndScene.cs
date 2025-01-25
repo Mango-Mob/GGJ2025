@@ -24,11 +24,13 @@ public class EndScene : MonoBehaviour
     public void PlayAgain()
     {
         LevelManager.Instance.LoadNewLevel("GameScene");
+        GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
     }
 
     public void GoToMenu()
     {
         LevelManager.Instance.LoadNewLevel("MenuScene");
+        GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
     }
 
     public void Quit()

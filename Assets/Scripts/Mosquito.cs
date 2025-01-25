@@ -9,6 +9,7 @@ public class Mosquito : PausableObject
     public bool is_facing_right = true;
 
     public float min_delay, max_delay;
+    public float warning_time = 1.2f;
     public GameObject AlarmPrefab;
     private GameObject CreatedAlarm;
     public float timer = 0.0f;
@@ -40,7 +41,7 @@ public class Mosquito : PausableObject
             timer -= Time.deltaTime;
             GetComponentInChildren<Collider>().enabled = timer <= 0.0f;
 
-            if (!CreatedAlarm && timer <= min_delay * 2f)
+            if (!CreatedAlarm && timer <= warning_time)
             {
                 CreatedAlarm = GameObject.Instantiate(AlarmPrefab, transform);
                 CreatedAlarm.transform.position = transform.position + (is_facing_right ? -transform.right : transform.right);
