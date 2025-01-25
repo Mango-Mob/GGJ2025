@@ -13,12 +13,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float bounceMult = 2.0f;
     [SerializeField] private float startHeight = 10.0f;
     [SerializeField] private float resetSpeed = 12.0f;
+    [SerializeField] private float resetRotateSpeed = 360.0f;
 
     [Header("Visuals")]
     [SerializeField] private GameObject model;
     [SerializeField] private ParticleSystem boostVFX;
     [SerializeField] private ParticleSystem boostVFX2;
+    [SerializeField] private ParticleSystem scoreVFX;
     [SerializeField] private float rotationSmoothTime = 0.1f;
+    [SerializeField] private GameObject biscuit;
     private float rotationVelocity = 0.0f;
     private Animator animator;
 
@@ -79,9 +82,10 @@ public class PlayerController : MonoBehaviour
 
         CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
         
-        boostUI.SetVisible(!isStunned && !isDead);
-        breakoutUI.SetVisible(isStunned && !isDead);
+        boostUI.SetVisible(!isStunned && !isDead && !isResetting);
+        breakoutUI.SetVisible(isStunned && !isDead && !isResetting);
         breakoutUI.SetHealth(health);
+        biscuit.SetActive(isResetting);
 
         animator.SetBool("IsStunned", isStunned);
 
@@ -244,7 +248,8 @@ public class PlayerController : MonoBehaviour
         if (GameManager.Instance)
             GameManager.Instance.TogglePause();
 
-        _bubble?.Pop(false);
+        if (_bubble)
+            _bubble?.Pop(false);
 
         isStunned = false;
     }
@@ -253,21 +258,38 @@ public class PlayerController : MonoBehaviour
         isResetting = true;
 
         // Get direction to start
-        Vector3 startPos = new Vector3(0.0f, startHeight, 0.0f);
+        Vector3 startPos = new Vector3(0.0f, startHeight, transform.position.z);
 
-        animator.SetBool("IsResetting", true);
+        //animator.SetBool("IsResetting", true);
 
-        while (Vector3.Distance(transform.position, startPos) < 0.02f)
+        while (transform.position.y < startPos.y)
         {
-            transform.position = Vector3.MoveTowards(transform.position, startPos, resetSpeed * Time.deltaTime);
-            rb.velocity = Vector3.zero;
+            //transform.position = Vector3.MoveTowards(transform.position, startPos, resetSpeed * Time.deltaTime);
+            model.transform.localEulerAngles = new Vector3(0.0f, model.transform.localEulerAngles.y - resetRotateSpeed * Time.deltaTime, 0.0f);
+
+            rb.velocity = (startPos - transform.position).normalized * resetSpeed;
 
             yield return new WaitForEndOfFrame();
         }
 
-        animator.SetBool("IsResetting", false);
+        rb.velocity = Vector3.zero;
+
+        model.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+
+        //animator.SetBool("IsResetting", false);
+
+        scoreVFX.Play();
 
         isResetting = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger Entered");
+        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && !isResetting)
+        {
+            Debug.Log("Objective Entered");
+            StartCoroutine(ResetToStart());
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
