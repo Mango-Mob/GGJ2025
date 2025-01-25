@@ -46,7 +46,7 @@ public class Bubble : PausableObject
         if(immune >= 0.0f)
             immune -= Time.deltaTime;
 
-        if(transform.position.y >= fixed_height || transform.localPosition.y < 0 )
+        if(transform.position.y >= fixed_height || transform.position.y < 0 )
             Pop( false );
 
         if (density >= max_density)
@@ -134,11 +134,12 @@ public class Bubble : PausableObject
         {
             var bubble = gameObject.GetComponent<Bubble>();
             var result_density = density / 2.0f;
+            var angle = Random.Range(45.0f, 70.0f);
             for (int i = 0; i < 2; i++)
             {
                 pos = speedCurve.EvaluateInverse(rigid.velocity.y / max_speed.Evaluate(density));
                 var speed = speedCurve.Evaluate(pos) * max_speed.Evaluate(result_density);
-                var velocity = Quaternion.Euler(0, 0, Random.Range(0.0f, 360.0f)) * new Vector3(0, speed, 0);
+                var velocity = Quaternion.Euler(0, 0, i == 0 ? -angle : angle) * new Vector3(0, speed, 0);
                 var obj = GameManager.Instance.SpawnBubble(transform.parent, transform.position, velocity, result_density);
                 obj.GetComponent<Bubble>().immune = 0.25f;
             }
