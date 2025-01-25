@@ -470,6 +470,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4549293396018027375, guid: c464f6ef929c2c04fa40f9b67796e167, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549293396018027375, guid: c464f6ef929c2c04fa40f9b67796e167, type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: b8baef21b21ec4741a3fff3915741051, type: 3}
+    - target: {fileID: 4549293396018027375, guid: c464f6ef929c2c04fa40f9b67796e167, type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: d9f6c75ec4ba09b4d90685bdcc331855, type: 3}
+    - target: {fileID: 4549293396018027375, guid: c464f6ef929c2c04fa40f9b67796e167, type: 3}
+      propertyPath: audioClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5646d87c3df96f841969cddad83cc911, type: 3}
     - target: {fileID: 4893396146230647627, guid: c464f6ef929c2c04fa40f9b67796e167, type: 3}
       propertyPath: m_RootOrder
       value: 5

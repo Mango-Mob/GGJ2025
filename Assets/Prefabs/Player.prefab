@@ -11350,6 +11350,7 @@ GameObject:
   - component: {fileID: 5549268751174515373}
   - component: {fileID: 5549268751174515362}
   - component: {fileID: 5549268751174515375}
+  - component: {fileID: 1299164015146515264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -11412,6 +11413,7 @@ MonoBehaviour:
   healthDrain: 0.15
   breakSpeed: 0.1
   isDead: 0
+  audioAgent: {fileID: 1299164015146515264}
 --- !u!135 &5549268751174515362
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11441,6 +11443,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
+--- !u!114 &1299164015146515264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549268751174515363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013d2f1b59b0f71408bb9ba816659dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localVolume: 1
+  isMuted: 0
+  is3D: 0
+  min3D_Dist: 1
+  max3D_Dist: 500
+  audioClips:
+  - {fileID: 8300000, guid: 278d799fbdad38c47b4e9db13c450218, type: 3}
+  - {fileID: 8300000, guid: fe94edc136dc9214a9f8c3aacbb82327, type: 3}
+  - {fileID: 8300000, guid: 8722d7da4080f0140bf9f18880136ad5, type: 3}
+  audioPlayersCount: 5
+  channel: 1
 --- !u!1 &5549268751306801337
 GameObject:
   m_ObjectHideFlags: 0
