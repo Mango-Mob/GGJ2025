@@ -2563,6 +2563,10 @@ PrefabInstance:
       propertyPath: safety_zone
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
+      propertyPath: dog_animator
+      value: 
+      objectReference: {fileID: 4779540834671488157}
     - target: {fileID: 2025955780252901358, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2629,6 +2633,10 @@ PrefabInstance:
       propertyPath: is_flipped
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
+      propertyPath: dog_animator
+      value: 
+      objectReference: {fileID: 4779540834308575846}
     - target: {fileID: 2025955780252901358, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
       propertyPath: m_RootOrder
       value: 1

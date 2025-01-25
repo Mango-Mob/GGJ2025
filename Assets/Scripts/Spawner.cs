@@ -14,6 +14,7 @@ public class Spawner : PausableObject
     public float safety_zone = 1.25f;
     public AnimationCurve time_till_next_bubble;
     public float time;
+    public Animator dog_animator;
 
     private float timer;
     // Start is called before the first frame update

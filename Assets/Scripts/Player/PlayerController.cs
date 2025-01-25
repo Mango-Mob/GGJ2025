@@ -313,11 +313,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && !isResetting && !isDead)
         {
             Debug.Log("Objective Entered");
-            foreach (var animator in other.gameObject.GetComponentsInChildren<Animator>())
-            {
-                animator.SetTrigger("Wake Up");
-            }
-            ;
+            GameManager.Instance.WakeDogs();
             StartCoroutine(ResetToStart());
         }
     }

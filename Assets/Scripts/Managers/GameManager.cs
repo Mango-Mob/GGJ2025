@@ -81,4 +81,12 @@ public class GameManager : Singleton<GameManager>
 
         return list;
     }
+    public void WakeDogs()
+    {
+        foreach (var spawner in spawners)
+        {
+            var comp = spawner.GetComponent<Spawner>();
+            comp.dog_animator.SetTrigger("Wake up");
+        }
+    }
 }

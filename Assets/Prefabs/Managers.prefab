@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingBarPrefab: {fileID: 0}
-  loadingHintPrefab: {fileID: 0}
   isTransitioning: 0
   transitionTime: 1
 --- !u!1 &1481641322
@@ -233,7 +232,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3689851056015901473}
-  - component: {fileID: 1256347149}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -258,72 +256,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1256347149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 83942764246345675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a46277df85da645bb9543df448ea50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_player: {fileID: 0}
-  m_activeCamera: {fileID: 0}
-  IsInCombat: 0
-  time_desplay: 
-  SpawnDelay: 0
-  DensityScaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.6
-      inSlope: 0.5031366
-      outSlope: 0.5031366
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.45698917
-      value: 0.829928
-      inSlope: 0.1780534
-      outSlope: 0.1780534
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.10046409
-    - serializedVersion: 3
-      time: 0.7095892
-      value: 0.87689394
-      inSlope: 0.16163222
-      outSlope: 0.16163222
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.3313117
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.6371286
-      outSlope: 0.6371286
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.11201584
-      outWeight: 0.0970817
-    - serializedVersion: 3
-      time: 4
-      value: 3
-      inSlope: 0.7442847
-      outSlope: 0.7442847
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.17033307
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  bubble_prefab: {fileID: 861786067704301136, guid: cca888d5e595c154da121de6901ba402, type: 3}
