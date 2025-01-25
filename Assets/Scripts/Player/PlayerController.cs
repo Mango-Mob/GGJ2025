@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveAcceleration = 4.0f;
     [SerializeField] private float smoothTime = 0.3f;
     [SerializeField] private float minSpeed = 0.1f;
+    [SerializeField] private float bounceMult = 2.0f;
 
     [Header("Visuals")]
     [SerializeField] private GameObject model;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem boostVFX2;
     [SerializeField] private float rotationSmoothTime = 0.1f;
     private float rotationVelocity = 0.0f;
+    private Animator animator;
 
     private Vector2 velocity = Vector2.zero;
     private Rigidbody rb;
@@ -31,8 +33,15 @@ public class PlayerController : MonoBehaviour
     private float boostValue;
     private float timeOfLastBoost;
 
+    [Header("Stun Stats")]
+    [SerializeField] private float healthDrain = 0.15f;
+    [SerializeField] private float breakSpeed = 0.1f;
+    private float health = 1.0f;
+    private bool isStunned = false;
+
     // Other scripts
     private BoostUI boostUI;
+    private BreakoutUI breakoutUI;
 
 
     private void Awake()
@@ -40,21 +49,39 @@ public class PlayerController : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody>();
         boostUI = GetComponentInChildren<BoostUI>();
+        breakoutUI = GetComponentInChildren<BreakoutUI>();
+        animator = model.GetComponentInChildren<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         boostValue = boostUI.maxValue;
+        CameraController.instance.SetCameraState(CameraController.CameraState.FOLLOW);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            StartCoroutine(Stun());
+        }
+
+        CameraController.instance.SetCameraState(isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW);
+        boostUI.SetVisible(!isStunned);
+        breakoutUI.SetVisible(isStunned);
+        breakoutUI.SetHealth(health);
+
+        animator.SetBool("IsStunned", isStunned);
+
         HandleInput();
     }
     public void HandleInput()
     {
+        if (isStunned)
+            return;
+
         bool usingGamepad = InputManager.Instance.isInGamepadMode;
         Vector2 movement = Vector2.zero;
         if (usingGamepad)
@@ -132,5 +159,55 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(boostDuration);
         isBoosting = false;
+    }
+    public void HitPlayer()
+    {
+        if (!isStunned)
+        {
+            StartCoroutine(Stun());
+        }
+    }
+    IEnumerator Stun()
+    {
+        isStunned = true;
+        Debug.Log("Stunned");
+
+        float breakHealth = 1.0f;
+        rb.velocity = Vector3.zero;
+
+        int lastDirection = 0;
+
+        while (breakHealth > 0.0f)
+        {
+            bool breaking = false;
+            if (lastDirection >= 0 && (InputManager.Instance.GetGamepadStick(StickType.LEFT, 0).x < 0.0f || InputManager.Instance.GetKey(KeyType.A).wasPressedThisFrame))
+            {
+                lastDirection = -1;
+                breaking = true;
+            }
+            else if (lastDirection <= 0 && (InputManager.Instance.GetGamepadStick(StickType.LEFT, 0).x > 0.0f || InputManager.Instance.GetKey(KeyType.D).wasPressedThisFrame))
+            {
+                lastDirection = 1;
+                breaking = true;
+            }
+
+            if (breaking)
+            {
+                breakHealth -= breakSpeed;
+            }
+            health -= healthDrain * Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        isStunned = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        return;
+
+        Debug.Log("Collided");
+        Vector3 relativeVel = collision.relativeVelocity;
+        rb.velocity = new Vector3(-relativeVel.x * bounceMult, relativeVel.y, 0.0f);
     }
 }
