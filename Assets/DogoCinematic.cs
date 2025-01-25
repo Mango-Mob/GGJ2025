@@ -29,4 +29,9 @@ public class DogoCinematic : MonoBehaviour
             bubble.GetComponent<Bubble>().Pop(false);
         }
     }
+
+    public void Bark()
+    {
+        GetComponent<MultiAudioAgent>().PlayRandom(false, Random.Range(0.75f, 1.25f));
+    }
 }
