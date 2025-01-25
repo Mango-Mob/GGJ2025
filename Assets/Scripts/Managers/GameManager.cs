@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject m_player;
     public Camera m_activeCamera;
     public bool IsInCombat = false;
-    public String time_desplay;
+    public float time;
     public float SpawnDelay;
     System.Random random;
 
@@ -33,8 +33,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "MenuScene")
-            return;
+        if (!m_player.GetComponent<PlayerController>().isDead)
+            time += Time.deltaTime;
 
         if (InputManager.Instance.IsKeyUp(KeyType.P))
             TogglePause();

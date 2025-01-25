@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float breakSpeed = 0.1f;
     private float health = 1.0f;
     private bool isStunned = false;
-    private bool isDead = false;
+    public bool isDead = false;
     private bool isResetting = false;
     private float timeOfReset;
 

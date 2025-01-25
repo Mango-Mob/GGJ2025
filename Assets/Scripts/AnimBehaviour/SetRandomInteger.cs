@@ -17,7 +17,7 @@ public class SetRandomInteger : StateMachineBehaviour
         if (!onEnter)
             return;
 
-        animator.SetInteger(paramName, Random.Range(minInclusive, maxInclusive));
+        animator.SetInteger(paramName, Random.Range(minInclusive, maxInclusive + 1));
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,7 +32,7 @@ public class SetRandomInteger : StateMachineBehaviour
         if (!onExit)
             return;
 
-        animator.SetInteger(paramName, Random.Range(minInclusive, maxInclusive));
+        animator.SetInteger(paramName, Random.Range(minInclusive, maxInclusive + 1));
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
