@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            StartCoroutine(Stun());
+            StartCoroutine(Stun(null));
         }
 
         CameraController.instance.SetCameraState(isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW);

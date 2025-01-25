@@ -10,7 +10,8 @@ public class Spawner : PausableObject
 
     public bool is_flipped = false;
     private Vector3[] cached_directions;
-    
+
+    public float safety_zone = 1.25f;
     public float time_till_next_bubble;
     private float timer;
     // Start is called before the first frame update
@@ -27,7 +28,13 @@ public class Spawner : PausableObject
 
         timer -= Time.deltaTime;
         if (timer <= 0)
+        {
+            var list = GameManager.Instance.GetBubblesInRange(transform.position, safety_zone);
+            if (list.Count > 0)
+                return;
+
             Spawn();
+        }
     }
 
     public void Spawn()
@@ -49,7 +56,8 @@ public class Spawner : PausableObject
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 1.0f);
+        Gizmos.DrawSphere(transform.position, 0.1f);
+        Gizmos.DrawWireSphere(transform.position, safety_zone);
 
         foreach (var direction in GetDirections())
             Gizmos.DrawLine(transform.position, transform.position + direction * 10);
