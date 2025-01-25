@@ -196,7 +196,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   popEffect: {fileID: 861786067003161441}
-  fixed_height: 18
+  fixed_height: 16.5
   max_speed:
     serializedVersion: 2
     m_Curve:
