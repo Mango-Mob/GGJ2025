@@ -228,6 +228,9 @@ public class PlayerController : MonoBehaviour
                 if (GameManager.Instance)
                     GameManager.Instance.TogglePause();
 
+                float timeOfDeath = Time.time;
+                bool loadedLevel = false;
+
                 while (true)
                 {
                     if (_bubble != null)
@@ -238,6 +241,12 @@ public class PlayerController : MonoBehaviour
                     {
                         rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
                         rb.useGravity = true;
+                    }
+
+                    if (Time.time > timeOfDeath + 3.0f && !loadedLevel)
+                    {
+                        LevelManager.Instance.LoadNewLevel("EndScene");
+                        loadedLevel = true;
                     }
 
                     yield return new WaitForEndOfFrame();
