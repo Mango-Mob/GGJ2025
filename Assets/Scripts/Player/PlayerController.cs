@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float smoothTime = 0.3f;
     [SerializeField] private float minSpeed = 0.1f;
     [SerializeField] private float bounceMult = 2.0f;
+    [SerializeField] private float startHeight = 10.0f;
+    [SerializeField] private float resetSpeed = 12.0f;
 
     [Header("Visuals")]
     [SerializeField] private GameObject model;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private float health = 1.0f;
     private bool isStunned = false;
     private bool isDead = false;
+    private bool isResetting = false;
 
     // Other scripts
     private BoostUI boostUI;
@@ -68,10 +71,15 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Stun(null));
         }
+        if (Input.GetKeyDown(KeyCode.R) && !isResetting)
+        {
+            StartCoroutine(ResetToStart());
+        }
 
         CameraController.instance.SetCameraState(isDead ? CameraController.CameraState.DEAD : (isStunned ? CameraController.CameraState.ZOOMED : CameraController.CameraState.FOLLOW));
-        boostUI.SetVisible(!isStunned);
-        breakoutUI.SetVisible(isStunned);
+        
+        boostUI.SetVisible(!isStunned && !isDead);
+        breakoutUI.SetVisible(isStunned && !isDead);
         breakoutUI.SetHealth(health);
 
         animator.SetBool("IsStunned", isStunned);
@@ -80,7 +88,7 @@ public class PlayerController : MonoBehaviour
     }
     public void HandleInput()
     {
-        if (isStunned)
+        if (isStunned || isDead || isResetting)
             return;
 
         bool usingGamepad = InputManager.Instance.isInGamepadMode;
@@ -163,7 +171,7 @@ public class PlayerController : MonoBehaviour
     }
     public void HitPlayer(Bubble _bubble)
     {
-        if (!isStunned)
+        if (!isStunned && !isResetting)
         {
             StartCoroutine(Stun(_bubble));
         }
@@ -222,6 +230,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
+                        rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
                         rb.useGravity = true;
                     }
 
@@ -237,6 +246,27 @@ public class PlayerController : MonoBehaviour
         _bubble?.Pop(false);
 
         isStunned = false;
+    }
+    IEnumerator ResetToStart()
+    {
+        isResetting = true;
+
+        // Get direction to start
+        Vector3 startPos = new Vector3(0.0f, startHeight, 0.0f);
+
+        animator.SetBool("IsResetting", true);
+
+        while (Vector3.Distance(transform.position, startPos) < 0.02f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, startPos, resetSpeed * Time.deltaTime);
+            rb.velocity = Vector3.zero;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        animator.SetBool("IsResetting", false);
+
+        isResetting = false;
     }
     private void OnCollisionEnter(Collision collision)
     {

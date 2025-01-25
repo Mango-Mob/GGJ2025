@@ -6527,14 +6527,17 @@ MonoBehaviour:
   smoothTime: 0.3
   minSpeed: 0.1
   bounceMult: 2
+  startHeight: 15
+  resetSpeed: 12
   model: {fileID: 297064638013228143}
   boostVFX: {fileID: 5549268751473820340}
   boostVFX2: {fileID: 6215958392104692583}
   rotationSmoothTime: 0.1
-  boostSpeed: 15
-  boostDuration: 0.005
+  boostSpeed: 8
+  boostDuration: 0.2
   boostCooldown: 0.5
   boostRechargeSpeed: 0.2
+  isBoosting: 0
   healthDrain: 0.15
   breakSpeed: 0.1
 --- !u!135 &5549268751174515362
