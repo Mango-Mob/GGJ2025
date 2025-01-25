@@ -6530,8 +6530,8 @@ MonoBehaviour:
   boostVFX: {fileID: 5549268751473820340}
   boostVFX2: {fileID: 6215958392104692583}
   rotationSmoothTime: 0.1
-  boostSpeed: 20
-  boostDuration: 0.01
+  boostSpeed: 15
+  boostDuration: 0.005
   boostCooldown: 0.5
   boostRechargeSpeed: 0.2
   healthDrain: 0.15
