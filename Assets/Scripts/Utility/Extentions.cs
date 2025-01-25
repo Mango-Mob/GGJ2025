@@ -35,6 +35,20 @@ public static class Extentions
         comp.enabled = status;
     }
 
+    //This is terrible for performance, but who cares
+    public static float EvaluateInverse(this AnimationCurve curve, float value)
+    {
+        var inverseCurve = new AnimationCurve();
+        for (int i = 0; i < curve.length; i++)
+        {
+            Keyframe inverseKey = new Keyframe(curve.keys[i].value, curve.keys[i].time);
+            inverseCurve.AddKey(inverseKey);
+        }
+        
+        return inverseCurve.Evaluate(value);
+    }
+
+
     public static Vector2 OnUnitSquare(Vector2 sphere)
     {
        if(sphere == Vector2.zero)

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1df6c758d4939af41a12e48900e6c1aa
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Agan? S
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 320a5f136e528d4459edf73247e8d4eb, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

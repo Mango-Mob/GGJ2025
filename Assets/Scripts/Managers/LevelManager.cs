@@ -23,7 +23,6 @@ public class LevelManager : SingletonPersistent<LevelManager>
     public static bool loadingNextArea = false;
 
     public GameObject loadingBarPrefab;
-    public GameObject loadingHintPrefab;
 
     public static GameObject transitionPrefab;
     public static GameObject youdiedPrefab;
@@ -92,78 +91,71 @@ public class LevelManager : SingletonPersistent<LevelManager>
     {
         float timeMult = 1.0f;
         isTransitioning = true;
-
+        
         switch (_transition)
         {
             case Transition.CROSSFADE:
-                transition = Instantiate(transitionPrefab, transform).GetComponent<Animator>();
+                if (transitionPrefab)
+                    transition = Instantiate(transitionPrefab, transform).GetComponent<Animator>();
                 break;
             case Transition.CROSSFADE_SPLIT:
-                transition = Instantiate(transitionPrefab, transform).GetComponent<Animator>();
+                if (transitionPrefab)
+                    transition = Instantiate(transitionPrefab, transform).GetComponent<Animator>();
                 Time.timeScale = 1.0f;
                 timeMult = 0.1f;
                 break;
             case Transition.YOUDIED:
-                transition = Instantiate(youdiedPrefab, transform).GetComponent<Animator>();
+                if (youdiedPrefab)
+                    transition = Instantiate(youdiedPrefab, transform).GetComponent<Animator>();
                 timeMult = 5.0f;
                 break;
             case Transition.YOUWIN:
-                transition = Instantiate(youwinPrefab, transform).GetComponent<Animator>();
+                if (youdiedPrefab)
+                    transition = Instantiate(youwinPrefab, transform).GetComponent<Animator>();
                 timeMult = 3.5f;
                 break;
         }
 
-        transition.speed = 1.0f / timeMult;
 
         if (transition != null)
         {
+            transition.speed = 1.0f / timeMult;
+
             // Wait to let animation finish playing
             yield return new WaitForSeconds(transitionTime * timeMult);
+
+            transition.speed = 0.0f;
         }
 
-        transition.speed = 0.0f;
-
-        // Get random hint
-        TextMeshProUGUI loadingHint = Instantiate(loadingHintPrefab, transition.transform).GetComponentInChildren<TextMeshProUGUI>();
-        loadingHint.transform.SetAsLastSibling();
-
-        TextAsset hintList = Resources.Load<TextAsset>("UI/LoadingHints");
-        string[] lines = hintList.text.Split('\n');
-        int randomIndex = UnityEngine.Random.Range(0, lines.Length);
-
-        loadingHint.text = "Hint: " + lines[randomIndex];
-
-        Animator hintAnimator = loadingHint.GetComponentInChildren<Animator>();
-
-        // Loading screen
-        Slider loadingBar = Instantiate(loadingBarPrefab, transition.transform).GetComponent<Slider>();
-        loadingBar.transform.SetAsLastSibling();
-        AsyncOperation gameLoad = SceneManager.LoadSceneAsync(_name);
-
-        while (!gameLoad.isDone)
+        if(loadingBarPrefab)
         {
-            float progress = Mathf.Clamp01(gameLoad.progress / 0.9f);
-            Debug.Log(gameLoad.progress);
-
-            if (loadingBar)
+            // Loading screen
+            Slider loadingBar = Instantiate(loadingBarPrefab, transition.transform).GetComponent<Slider>();
+            loadingBar.transform.SetAsLastSibling();
+            AsyncOperation gameLoad = SceneManager.LoadSceneAsync(_name);
+            while (!gameLoad.isDone)
             {
-                loadingBar.value = progress;
-            }
+                float progress = Mathf.Clamp01(gameLoad.progress / 0.9f);
+                Debug.Log(gameLoad.progress);
 
-            yield return new WaitForEndOfFrame();
+                if (loadingBar)
+                {
+                    loadingBar.value = progress;
+                }
+
+                yield return new WaitForEndOfFrame();
+
+                Destroy(loadingBar.gameObject);
+            }
         }
 
         if (_transition == Transition.CROSSFADE_SPLIT || _transition == Transition.YOUDIED)
             timeMult = 1.0f;
 
-        transition.speed = 1.0f / timeMult;
+        if(transition)
+            transition.speed = 1.0f / timeMult;
 
-        hintAnimator.speed = 1.0f / timeMult;
-        hintAnimator.SetTrigger("Fade");
-
-        Destroy(loadingBar.gameObject);
-
-        //SceneManager.LoadScene(_name);
+        SceneManager.LoadScene(_name);
         yield return new WaitForSeconds(transitionTime * timeMult);
 
         if (transition != null)
