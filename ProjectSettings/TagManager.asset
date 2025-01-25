@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Bubble
+  - Spawner
   layers:
   - Default
   - TransparentFX
