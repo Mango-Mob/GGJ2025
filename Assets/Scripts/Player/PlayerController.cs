@@ -160,14 +160,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(boostDuration);
         isBoosting = false;
     }
-    public void HitPlayer()
+    public void HitPlayer(Bubble _bubble)
     {
         if (!isStunned)
         {
-            StartCoroutine(Stun());
+            StartCoroutine(Stun(_bubble));
         }
     }
-    IEnumerator Stun()
+    IEnumerator Stun(Bubble _bubble)
     {
         isStunned = true;
         Debug.Log("Stunned");
@@ -199,6 +199,8 @@ public class PlayerController : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+
+        //_bubble.Pop();
 
         isStunned = false;
     }
