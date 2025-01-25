@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R) && !isResetting)
         {
+            Debug.Log("Resetting");
             StartCoroutine(ResetToStart());
         }
 
