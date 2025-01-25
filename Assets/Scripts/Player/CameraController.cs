@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     AnimationCurve curve;
     Camera thisCamera;
     private CameraState cameraState;
-
+    private float currentFOV;
     public enum CameraState
     {
         FOLLOW,
@@ -40,12 +40,12 @@ public class CameraController : MonoBehaviour
             case CameraState.FOLLOW:
                 targetPos = new Vector3(0.0f, target.position.y, transform.position.z);
                 transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
-                thisCamera.fieldOfView = Mathf.SmoothDamp(thisCamera.fieldOfView, followFOV, ref fovVelocity, 0.1f);
+                SetFOV(Mathf.SmoothDamp(currentFOV, followFOV, ref fovVelocity, 0.1f));
                 break;
             case CameraState.ZOOMED:
                 targetPos = new Vector3(target.position.x, target.position.y, transform.position.z);
                 transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
-                thisCamera.fieldOfView = Mathf.SmoothDamp(thisCamera.fieldOfView, zoomedFOV, ref fovVelocity, 0.1f);
+                SetFOV(Mathf.SmoothDamp(currentFOV, zoomedFOV, ref fovVelocity, 0.1f));
                 break;
             case CameraState.DEAD:
                 break;
@@ -56,5 +56,10 @@ public class CameraController : MonoBehaviour
     public void SetCameraState(CameraState _state)
     {
         cameraState = _state;
+    }
+    private void SetFOV(float _fov)
+    {
+        currentFOV = _fov;
+        thisCamera.fieldOfView = Camera.HorizontalToVerticalFieldOfView(currentFOV, thisCamera.aspect);
     }
 }
