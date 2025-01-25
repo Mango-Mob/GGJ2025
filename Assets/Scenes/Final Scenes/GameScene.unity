@@ -1378,6 +1378,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4779540833089452696, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 540010a13f62db14c969a5db86b6dba4, type: 2}
     - target: {fileID: 4779540833125409150, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1426,6 +1430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dogs
       objectReference: {fileID: 0}
+    - target: {fileID: 5239979552631863370, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 540010a13f62db14c969a5db86b6dba4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
 --- !u!1001 &1986268956
