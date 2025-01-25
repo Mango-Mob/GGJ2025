@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float startHeight = 10.0f;
     [SerializeField] private float resetSpeed = 12.0f;
     [SerializeField] private float resetRotateSpeed = 360.0f;
+    [SerializeField] private float enemyShoveSpeed = 10.0f;
 
     [Header("Visuals")]
     [SerializeField] private GameObject model;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     private bool isStunned = false;
     private bool isDead = false;
     private bool isResetting = false;
+    private float timeOfReset;
 
     // Other scripts
     private BoostUI boostUI;
@@ -147,7 +149,6 @@ public class PlayerController : MonoBehaviour
 
         Move(movement);
     }
-
     public void Move(Vector2 _move)
     {
         rb.velocity = Vector2.SmoothDamp(rb.velocity, _move * maxSpeed, ref velocity, smoothTime);
@@ -176,7 +177,7 @@ public class PlayerController : MonoBehaviour
     }
     public void HitPlayer(Bubble _bubble)
     {
-        if (!isStunned && !isResetting)
+        if (!isStunned && !isResetting && timeOfReset < Time.time + 0.5f) 
         {
             StartCoroutine(Stun(_bubble));
         }
@@ -279,13 +280,17 @@ public class PlayerController : MonoBehaviour
         //animator.SetBool("IsResetting", false);
 
         scoreVFX.Play();
+        if (GameManager.Instance)
+            GameManager.Instance.score += 500;
+
+        timeOfReset = Time.time;
 
         isResetting = false;
     }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Entered");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && !isResetting)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Objective") && !isResetting && !isDead)
         {
             Debug.Log("Objective Entered");
             StartCoroutine(ResetToStart());
@@ -293,10 +298,13 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        return;
-
         Debug.Log("Collided");
-        Vector3 relativeVel = collision.relativeVelocity;
-        rb.velocity = new Vector3(-relativeVel.x * bounceMult, relativeVel.y, 0.0f);
+        if (collision.transform.tag == "Enemy")
+        {
+            Vector3 direction = transform.position - collision.transform.position;
+            rb.velocity = direction.normalized * enemyShoveSpeed;
+        }
+
+        return;
     }
 }
