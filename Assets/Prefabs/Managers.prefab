@@ -198,9 +198,12 @@ MonoBehaviour:
     max: 0
   - min: 1
     max: 1
+  - min: 2
+    max: 2
   m_backgroundMusic:
   - {fileID: 8300000, guid: 652425d2f9e9827439ecfb0627a8dde2, type: 3}
   - {fileID: 8300000, guid: a110b34c189655a4bb286c57259a719c, type: 3}
+  - {fileID: 8300000, guid: e748012e9e07e3444862965ad447443e, type: 3}
   m_mainPlayer: {fileID: 1481641327}
   m_backPlayer: {fileID: 1481641324}
   volumes: []
