@@ -1829,6 +1829,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 540010a13f62db14c969a5db86b6dba4, type: 2}
   - {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
   index: 0
+  nose_bone: {fileID: 4779540835010863726}
 --- !u!1 &4779540834683247182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,6 +2120,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 540010a13f62db14c969a5db86b6dba4, type: 2}
   - {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
   index: 1
+  nose_bone: {fileID: 7907199943583976139}
 --- !u!1 &5711776781076614008
 GameObject:
   m_ObjectHideFlags: 0
