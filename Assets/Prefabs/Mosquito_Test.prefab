@@ -46,8 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_paused: 0
   dist: 0
-  speed: 0
+  min_speed: 8
+  max_speed: 16
   is_facing_right: 1
+  min_delay: 0.6
+  max_delay: 3.2
+  AlarmPrefab: {fileID: 5822025326677310494, guid: f129f9017cbbf0b42848a6f5aa9bf5dc, type: 3}
 --- !u!1 &8085055892423452496
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +161,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 2
   m_CollisionDetection: 0

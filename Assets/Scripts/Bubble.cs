@@ -7,6 +7,7 @@ public class Bubble : PausableObject
 {
     public float density = 0.2f; //1 = Same as air
     public float max_density = 2.0f;
+    public float min_density_for_split = 0.8f;
     private float tempY;
 
     public AnimationCurve speedCurve;
@@ -25,6 +26,7 @@ public class Bubble : PausableObject
     }
 
     private bool is_colliding_with_player = false;
+    private float immune = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,9 @@ public class Bubble : PausableObject
         if (is_paused)
             return;
 
+        if(immune >= 0.0f)
+            immune -= Time.deltaTime;
+
         if(transform.position.y >= fixed_height || transform.localPosition.y < 0 )
             Pop( false );
 
@@ -50,12 +55,15 @@ public class Bubble : PausableObject
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (!collider.enabled || is_colliding_with_player)
+        if (!collider.enabled || immune > 0.0f)
             return;
 
         var speed = rigid.velocity;
         if (collider.gameObject.tag == "Wall")
             speed.x = -speed.x;
+
+        if (is_colliding_with_player)
+            return;
 
         if(collider.gameObject.tag == "Bubble")
         {
@@ -121,9 +129,19 @@ public class Bubble : PausableObject
         gameObject.GetComponent<Collider>().enabled = false;
         var rigid = GetComponent<Rigidbody>();
         rigid.velocity = Vector3.zero;
-        if (allow_splitting)
-        {
 
+        if (allow_splitting && density > min_density_for_split)
+        {
+            var bubble = gameObject.GetComponent<Bubble>();
+            var result_density = density / 2.0f;
+            for (int i = 0; i < 2; i++)
+            {
+                pos = speedCurve.EvaluateInverse(rigid.velocity.y / max_speed.Evaluate(density));
+                var speed = speedCurve.Evaluate(pos) * max_speed.Evaluate(result_density);
+                var velocity = Quaternion.Euler(0, 0, Random.Range(0.0f, 360.0f)) * new Vector3(0, speed, 0);
+                var obj = GameManager.Instance.SpawnBubble(transform.parent, transform.position, velocity, result_density);
+                obj.GetComponent<Bubble>().immune = 0.25f;
+            }
         }
 
         transform.parent = null;

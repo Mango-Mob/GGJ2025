@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Bubble
   - Spawner
+  - Enemy
   layers:
   - Default
   - TransparentFX

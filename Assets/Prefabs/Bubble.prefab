@@ -170,6 +170,7 @@ MonoBehaviour:
   is_paused: 0
   density: 0.4
   max_density: 2
+  min_density_for_split: 0.5
   speedCurve:
     serializedVersion: 2
     m_Curve:
