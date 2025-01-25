@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject bubble_prefab;
     public int score;
 
+    public GameObject[] spawners;
     protected override void Awake()
     {
         base.Awake();
@@ -27,6 +28,7 @@ public class GameManager : Singleton<GameManager>
     {
         m_player = GameObject.FindGameObjectWithTag("Player");
         m_activeCamera = Camera.main;
+        spawners = GameObject.FindGameObjectsWithTag("Spawner");
     }
 
     private void Update()
@@ -62,5 +64,21 @@ public class GameManager : Singleton<GameManager>
         var pausables = FindObjectsOfType<PausableObject>();
         foreach (var pausable in pausables)
             pausable.TogglePause();
+    }
+
+    public List<Bubble> GetBubblesInRange(Vector3 location, float range )
+    {
+        var list = new List<Bubble>();
+
+        foreach (var spawner in spawners)
+        {
+            foreach (var bubble in spawner.GetComponentsInChildren<Bubble>())
+            {
+                if (Extentions.CircleVsCircle(bubble.transform.position, location, bubble.transform.transform.localScale.x, range ))
+                    list.Add(bubble);
+            }
+        }
+
+        return list;
     }
 }

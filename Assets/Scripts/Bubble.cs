@@ -10,10 +10,8 @@ public class Bubble : PausableObject
 
     public AnimationCurve speedCurve;
     public GameObject popEffect;
-    const float gravity = -2.4f;
-    const float fixed_height = 7.15f; // max speed is height in 1 second
-    const float max_speed = fixed_height * 0.5f;
-    float spawn_delay = 0.25f;
+    public float fixed_height = 7.15f; // max speed is height in 1 second
+    public float max_speed = 2.86f;
 
     private Vector3 cached_velocity;
     public float pos = 0.0f;
@@ -30,7 +28,10 @@ public class Bubble : PausableObject
     {
         if (density >= 1.5f)
             Pop(false);
-
+    }
+    public void PlaySpawnAnimation()
+    {
+        GetComponent<Animator>().Play("Spawn");
     }
 
     private void Update()
@@ -69,6 +70,11 @@ public class Bubble : PausableObject
             Destroy(collider.gameObject);
         }
 
+        if(collider.gameObject.tag == "Player")
+        {
+            collider.GetComponent<PlayerController>().HitPlayer(this);
+        }
+
         rigid.velocity = speed;
     }
 
@@ -84,11 +90,6 @@ public class Bubble : PausableObject
         speed.y = speedCurve.Evaluate(pos) * (1.0f - density) * max_speed;
 
         rigid.velocity = speed;
-        //var upwards_force = (density_ratio) * gravity;
-        //var combined_force = new Vector2(0, upwards_force);
-        //var temp = transform.position;
-        //speed.x = Mathf.Min(speed.x + combined_force.x * Time.deltaTime, max_speed);
-        //speed.y = Mathf.Min(speed.y + combined_force.y * Time.deltaTime, max_speed);
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -99,7 +100,7 @@ public class Bubble : PausableObject
         pos = speedCurve.EvaluateInverse(rigid.velocity.y / max_speed);
     }
 
-    void Pop( bool allow_splitting )
+    public void Pop( bool allow_splitting )
     {
         var rigid = GetComponent<Rigidbody>();
         rigid.velocity = Vector3.zero;
@@ -108,9 +109,17 @@ public class Bubble : PausableObject
 
         }
 
+        transform.parent = null;
+        var list = GameManager.Instance.GetBubblesInRange(transform.position, transform.localScale.x * 5f);
+
+        foreach (var bubble in list)
+        {
+            bubble.GetComponent<Rigidbody>().AddExplosionForce(50, transform.position, transform.localScale.x * 5f);
+        }
+
+        popEffect.SetActive(true);
         popEffect.transform.parent = null;
         popEffect.GetComponent<VFXTimerScript>().m_startedTimer = true;
-        popEffect.GetComponent<SpriteRenderer>().enabled = true;
         Destroy(gameObject);
     }
 

@@ -9,6 +9,7 @@ public class BoostUI : MonoBehaviour
     private Color boostOrbColor;
     public float maxValue { private set; get; }
     [SerializeField] private Color emptyColorMult;
+    private CanvasGroup canvasGroup;
     public float currentValue { 
         set
         {
@@ -37,14 +38,14 @@ public class BoostUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        canvasGroup = GetComponent<CanvasGroup>();
         boostOrbColor = boostOrbs[0].color;
         maxValue = boostOrbs.Length;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetVisible(bool visible)
     {
-        
+        canvasGroup.alpha = visible ? 1.0f : 0.0f;
     }
 
 }

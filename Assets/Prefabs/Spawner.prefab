@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2025955780252901353}
   m_Layer: 0
   m_Name: Spawner
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_paused: 0
-  min_angle: -80
-  max_angle: 60
-  steps: 10
+  min_angle: -70
+  max_angle: 45
+  steps: 20
   is_flipped: 0
+  safety_zone: 0.5
   time_till_next_bubble: 0.75
