@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float resetSpeed = 12.0f;
     [SerializeField] private float resetRotateSpeed = 360.0f;
     [SerializeField] private float enemyShoveSpeed = 10.0f;
+    private int reset_count = 0;
 
     [Header("Visuals")]
     [SerializeField] private GameObject model;
@@ -298,7 +299,7 @@ public class PlayerController : MonoBehaviour
             //transform.position = Vector3.MoveTowards(transform.position, startPos, resetSpeed * Time.deltaTime);
             model.transform.localEulerAngles = new Vector3(0.0f, model.transform.localEulerAngles.y - resetRotateSpeed * Time.deltaTime, 0.0f);
 
-            rb.velocity = (startPos - transform.position).normalized * resetSpeed;
+            rb.velocity = (startPos - transform.position).normalized * resetSpeed * (reset_count <= 0 ? 1.0f : 1.5f);
 
             yield return new WaitForEndOfFrame();
         }
@@ -314,6 +315,7 @@ public class PlayerController : MonoBehaviour
         model.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         timeOfReset = Time.time;
         isResetting = false;
+        reset_count++;
 
         CameraController.instance.SetCameraState(CameraController.CameraState.FOLLOW);
     }

@@ -1768,6 +1768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4779540834671488158}
   - component: {fileID: 4779540834671488157}
+  - component: {fileID: 4502823746087907726}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -1812,6 +1813,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4502823746087907726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779540834671488159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdc6a4a9cfb89640803ba30c7fa6939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DogTextures:
+  - {fileID: 2100000, guid: 540010a13f62db14c969a5db86b6dba4, type: 2}
+  - {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
+  index: 0
+  nose_bone: {fileID: 4779540835010863726}
 --- !u!1 &4779540834683247182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,6 +2059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5034723588889312589}
   - component: {fileID: 4779540834308575846}
+  - component: {fileID: 8516899286076049584}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -2085,6 +2104,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8516899286076049584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5662501106357807095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdc6a4a9cfb89640803ba30c7fa6939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DogTextures:
+  - {fileID: 2100000, guid: 540010a13f62db14c969a5db86b6dba4, type: 2}
+  - {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
+  index: 1
+  nose_bone: {fileID: 7907199943583976139}
 --- !u!1 &5711776781076614008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2446,7 +2482,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 540010a13f62db14c969a5db86b6dba4, type: 2}
+  - {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

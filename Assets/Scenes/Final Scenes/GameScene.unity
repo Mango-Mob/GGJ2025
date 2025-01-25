@@ -2286,6 +2286,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 860080887498806721, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.000017412362
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604304556542023709, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.194046
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604304556542023709, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 6.1463103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604304556542023709, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -21.13843
+      objectReference: {fileID: 0}
     - target: {fileID: 4779540833125409150, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2333,6 +2349,18 @@ PrefabInstance:
     - target: {fileID: 4779540833125409151, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
       propertyPath: m_Name
       value: Dogs
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239979552631863370, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
+    - target: {fileID: 8202699318761066153, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.000017412345
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202699318761066153, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000023926728
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c973bb03916baa45b4846d24843ed49, type: 3}

@@ -86,7 +86,7 @@ public class GameManager : Singleton<GameManager>
         foreach (var spawner in spawners)
         {
             var comp = spawner.GetComponent<Spawner>();
-            comp.dog_animator.SetTrigger("Wake up");
+            comp.PlayDogoCinematic();
         }
     }
 }
