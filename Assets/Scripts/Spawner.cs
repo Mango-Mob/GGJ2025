@@ -12,7 +12,9 @@ public class Spawner : PausableObject
     private Vector3[] cached_directions;
 
     public float safety_zone = 1.25f;
-    public float time_till_next_bubble;
+    public AnimationCurve time_till_next_bubble;
+    public float time;
+
     private float timer;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class Spawner : PausableObject
     {
         if (is_paused) return;
 
+        time += Time.deltaTime;
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
@@ -39,7 +42,7 @@ public class Spawner : PausableObject
 
     public void Spawn()
     {
-        timer += time_till_next_bubble;
+        timer += time_till_next_bubble.Evaluate(time / 60.0f);
 
         var velocity = cached_directions[Random.Range(0, steps)] * Random.Range(2.5f, 3.0f);
         var density = Random.Range(0.0f, 1.0f);

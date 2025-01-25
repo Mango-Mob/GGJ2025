@@ -170,6 +170,7 @@ MonoBehaviour:
   is_paused: 0
   density: 0.4
   max_density: 2
+  min_density_for_split: 0.5
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -290,7 +291,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7184301164540511397}
   - component: {fileID: 8679136150582017957}
-  - component: {fileID: 8811563478333727860}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -363,24 +363,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8811563478333727860
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5576253589664013753}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7a74d85185962284f9035fb34e5b7683, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

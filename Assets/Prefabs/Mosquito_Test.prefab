@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3276342112002200996}
   m_Layer: 0
   m_Name: Mosquito_Test
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,6 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0986fedb3f2b56b428aaaaa6b51bffe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  is_paused: 0
+  dist: 0
+  min_speed: 8
+  max_speed: 16
+  is_facing_right: 1
+  min_delay: 0.6
+  max_delay: 3.2
+  AlarmPrefab: {fileID: 5822025326677310494, guid: f129f9017cbbf0b42848a6f5aa9bf5dc, type: 3}
 --- !u!1 &8085055892423452496
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,9 +63,11 @@ GameObject:
   - component: {fileID: 8671384546521882412}
   - component: {fileID: 2578009974701852410}
   - component: {fileID: 885931073031216695}
+  - component: {fileID: 7587240663930243447}
+  - component: {fileID: 3053520075356688809}
   m_Layer: 0
   m_Name: pCylinder10
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +113,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 115036853814429737, guid: 9463df613cc5857439ec3db40cd88eb9, type: 3}
+  - {fileID: 2100000, guid: 8f7ab462fc5083c47897a566ed20f3bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,3 +135,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7587240663930243447
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085055892423452496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 0.75
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.15, z: 0}
+--- !u!54 &3053520075356688809
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8085055892423452496}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 2
+  m_CollisionDetection: 0
