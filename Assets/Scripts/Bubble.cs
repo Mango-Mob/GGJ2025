@@ -146,12 +146,11 @@ public class Bubble : PausableObject
         }
 
         transform.parent = null;
-        var list = GameManager.Instance.GetBubblesInRange(transform.position, transform.localScale.x * 5f);
+        var list = GameManager.Instance.GetBubblesInRange(transform.position, transform.localScale.x * 8f);
 
-        foreach (var bubble in list)
-        {
-            bubble.GetComponent<Rigidbody>().AddExplosionForce(50, transform.position, transform.localScale.x * 5f);
-        }
+        if(!is_paused)
+            foreach (var bubble in list)
+                bubble.GetComponent<Rigidbody>().AddExplosionForce(60, transform.position, transform.localScale.x * 6f);
 
         popEffect.SetActive(true);
         popEffect.GetComponent<MultiAudioAgent>().PlayRandom(false, Random.Range(0.75f, 1.25f));

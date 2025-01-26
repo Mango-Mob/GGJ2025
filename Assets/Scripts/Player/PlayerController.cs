@@ -268,7 +268,13 @@ public class PlayerController : MonoBehaviour
                         rb.useGravity = true;
                     }
 
-                    if (Time.time > timeOfDeath + 3.0f && !loadedLevel)
+                    if (Time.time > timeOfDeath + 1.0f)
+                    {
+                        if (_bubble)
+                            _bubble?.Pop(false);
+                    }
+
+                    if (Time.time > timeOfDeath + 5.0f && !loadedLevel)
                     {
                         LevelManager.Instance.LoadNewLevel("EndScene");
                         loadedLevel = true;
