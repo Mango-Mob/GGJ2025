@@ -28,7 +28,7 @@ public class MainMenuScript : MonoBehaviour
         MusicSlider.value = AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.MUSIC];
         SoundEffectSlider.value = AudioManager.Instance.volumes[(int)AudioManager.VolumeChannel.SOUND_EFFECT];
         ContrastScript.BubbleAlpha = PlayerPrefs.GetFloat($"contrast");
-        SoundEffectSlider.value = ContrastScript.BubbleAlpha;
+        ContrastSlider.value = ContrastScript.BubbleAlpha;
     }
     // Update is called once per frame
     void Update()
@@ -65,7 +65,8 @@ public class MainMenuScript : MonoBehaviour
     {
         current_state = State.Settings;
         GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
-        popper.is_listening = false;
+        if (popper)
+            popper.is_listening = false;
         TogglePause();
     }
 
@@ -73,7 +74,8 @@ public class MainMenuScript : MonoBehaviour
     {
         current_state = State.Menu;
         GetComponent<SoloAudioAgent>().PlayWithRandomPitch();
-        popper.is_listening = true;
+        if (popper)
+            popper.is_listening = true;
         TogglePause();
     }
     public void OpenTeamPage()
