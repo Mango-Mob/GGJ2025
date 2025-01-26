@@ -7,6 +7,9 @@ public class DogoCinematic : MonoBehaviour
     public Material[] DogTextures;
     public int index;
     public Transform nose_bone;
+
+    public MultiAudioAgent barks;
+    public MultiAudioAgent taps;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,11 @@ public class DogoCinematic : MonoBehaviour
 
     public void Bark()
     {
-        GetComponent<MultiAudioAgent>().PlayRandom(false, Random.Range(0.75f, 1.25f));
+        barks.PlayRandom(false, Random.Range(0.75f, 1.25f));
+    }
+
+    public void Footstep()
+    {
+        taps.PlayRandom(false, Random.Range(0.85f, 1.15f));
     }
 }
