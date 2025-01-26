@@ -120,12 +120,15 @@ public class MenuBubble : PausableObject
 
         transform.parent = null;
 
-        foreach (var bubble in global_list)
+        if (!is_paused)
         {
-            if (bubble == this)
-                continue;
+            foreach (var bubble in global_list)
+            {
+                if (bubble == this)
+                    continue;
 
-            bubble.GetComponent<Rigidbody>().AddExplosionForce(50, transform.position, transform.localScale.x * 5f);
+                bubble.GetComponent<Rigidbody>().AddExplosionForce(150, transform.position, transform.localScale.x * 7f);
+            }
         }
 
         popEffect.SetActive(true);
