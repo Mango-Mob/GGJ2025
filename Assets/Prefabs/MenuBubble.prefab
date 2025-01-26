@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 861786067003161443}
   - component: {fileID: 6365091303535450923}
   - component: {fileID: 9217622341244892391}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: PopEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: -7762570472780925070}
   - component: {fileID: -7120990565060393724}
   - component: {fileID: 7754291145980479547}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: MenuBubble
   m_TagString: Bubble
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7184301164540511397}
   - component: {fileID: 8679136150582017957}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 5862838180224329580}
   - component: {fileID: 8678829856198647816}
   - component: {fileID: 2507986263256845829}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
