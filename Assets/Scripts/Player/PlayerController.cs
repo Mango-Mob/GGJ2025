@@ -349,7 +349,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collided");
-        if (collision.transform.tag == "Enemy")
+        if (collision.transform.tag == "Enemy" && !isResetting)
         {
             audioAgent.Play("MosquitoHit", false, Random.Range(0.75f, 1.25f));
             Vector3 direction = transform.position - collision.transform.position;
