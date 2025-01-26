@@ -76,6 +76,11 @@ public class MainMenuScript : MonoBehaviour
         popper.is_listening = true;
         TogglePause();
     }
+    public void OpenTeamPage()
+    {
+        Application.OpenURL("https://mangomob.itch.io/");
+    }
+
     public void Quit()
     {
         Application.Quit();
