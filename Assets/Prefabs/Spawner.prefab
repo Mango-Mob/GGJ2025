@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_paused: 0
-  min_angle: -60
-  max_angle: 45
+  min_angle: -70
+  max_angle: 50
   steps: 20
   is_flipped: 0
   safety_zone: 0.5

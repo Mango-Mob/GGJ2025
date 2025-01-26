@@ -780,6 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4779540833089452697}
   - component: {fileID: 4779540833089452696}
+  - component: {fileID: 1982599183732367180}
   m_Layer: 0
   m_Name: Doggo
   m_TagString: Untagged
@@ -887,6 +888,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.80922896, y: 0.36476505, z: 0.025624394}
     m_Extent: {x: 2.4244673, y: 1.6751338, z: 1.0733835}
   m_DirtyAABB: 0
+--- !u!64 &1982599183732367180
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779540833089452698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &4779540833118613751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,14 +2717,6 @@ PrefabInstance:
       value: Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
-      propertyPath: is_flipped
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
-      propertyPath: safety_zone
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
       propertyPath: dog_animator
       value: 
       objectReference: {fileID: 4779540834671488157}
@@ -2774,6 +2781,14 @@ PrefabInstance:
     - target: {fileID: 2025955780252901352, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
       propertyPath: m_Name
       value: Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
+      propertyPath: max_angle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
+      propertyPath: min_angle
+      value: -70
       objectReference: {fileID: 0}
     - target: {fileID: 2025955780252901353, guid: deb9e0f836bb7c548aee1917354e44c1, type: 3}
       propertyPath: is_flipped
