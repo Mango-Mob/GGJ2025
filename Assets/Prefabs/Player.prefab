@@ -11546,6 +11546,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 278d799fbdad38c47b4e9db13c450218, type: 3}
   - {fileID: 8300000, guid: fe94edc136dc9214a9f8c3aacbb82327, type: 3}
   - {fileID: 8300000, guid: 8722d7da4080f0140bf9f18880136ad5, type: 3}
+  - {fileID: 8300000, guid: b8baef21b21ec4741a3fff3915741051, type: 3}
+  - {fileID: 8300000, guid: d9f6c75ec4ba09b4d90685bdcc331855, type: 3}
   audioPlayersCount: 5
   channel: 1
 --- !u!1 &5549268751306801337
