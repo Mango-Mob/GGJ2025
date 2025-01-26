@@ -146,7 +146,7 @@ public class Bubble : PausableObject
         }
 
         transform.parent = null;
-        var list = GameManager.Instance.GetBubblesInRange(transform.position, transform.localScale.x * 5f);
+        var list = GameManager.Instance.GetBubblesInRange(transform.position, transform.localScale.x * 8f);
 
         if(!is_paused)
             foreach (var bubble in list)
