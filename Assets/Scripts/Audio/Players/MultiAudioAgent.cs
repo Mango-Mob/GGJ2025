@@ -104,11 +104,16 @@ public class MultiAudioAgent : AudioAgent
         AudioPlayer player = GetAvailablePlayer();
         if (player != null)
         {
-            player.SetClip(audioClips[UnityEngine.Random.Range(0, audioClips.Count)]);
-            player.SetLooping(isLooping);
-            player.SetPitch(pitch);
-            player.Play();
-            return true;
+            var clip = audioClips[UnityEngine.Random.Range(0, audioClips.Count)];
+            if (clip != null)
+            {
+                player.SetClip(audioClips[UnityEngine.Random.Range(0, audioClips.Count)]);
+                player.SetLooping(isLooping);
+                player.SetPitch(pitch);
+                player.Play();
+                return true;
+            }
+            return false;
         }
         return false;
     }

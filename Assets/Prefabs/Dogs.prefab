@@ -1770,6 +1770,7 @@ GameObject:
   - component: {fileID: 4779540834671488157}
   - component: {fileID: 4502823746087907726}
   - component: {fileID: 1697776405479988522}
+  - component: {fileID: 1087343846590108579}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -1831,6 +1832,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
   index: 0
   nose_bone: {fileID: 4779540835010863726}
+  barks: {fileID: 1697776405479988522}
+  taps: {fileID: 1087343846590108579}
 --- !u!114 &1697776405479988522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,6 +1857,32 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5964f80d42b14b54092a2b09b5ba8634, type: 3}
   - {fileID: 8300000, guid: d93869fe683e97e448fbb42f7b0f3ffb, type: 3}
   - {fileID: 8300000, guid: fadfc9c8757977f4f8da6a1cd5a44ee0, type: 3}
+  audioPlayersCount: 5
+  channel: 1
+--- !u!114 &1087343846590108579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779540834671488159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013d2f1b59b0f71408bb9ba816659dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localVolume: 1
+  isMuted: 0
+  is3D: 0
+  min3D_Dist: 1
+  max3D_Dist: 500
+  audioClips:
+  - {fileID: 8300000, guid: d646a38632cdbaf4097d65943bc2a918, type: 3}
+  - {fileID: 8300000, guid: 94a98827668b7634ca0903daab9d9e36, type: 3}
+  - {fileID: 8300000, guid: 7da24d92f1bd12a4fac9f4c1ad1a63fc, type: 3}
+  - {fileID: 8300000, guid: 646d3fe74aac2f4439f123fc9b68c8d2, type: 3}
+  - {fileID: 8300000, guid: a3ed2301f1bdc6f4cba32d9024dd3207, type: 3}
+  - {fileID: 8300000, guid: 079ab18d682e66944b9db49da2ad90d9, type: 3}
   audioPlayersCount: 5
   channel: 1
 --- !u!1 &4779540834683247182
@@ -2087,6 +2116,7 @@ GameObject:
   - component: {fileID: 4779540834308575846}
   - component: {fileID: 8516899286076049584}
   - component: {fileID: 6765118781436364184}
+  - component: {fileID: 2981713278973727813}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -2148,6 +2178,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 27a6c571b9b67cc42b003d73bfea87c1, type: 2}
   index: 1
   nose_bone: {fileID: 7907199943583976139}
+  barks: {fileID: 6765118781436364184}
+  taps: {fileID: 2981713278973727813}
 --- !u!114 &6765118781436364184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2171,6 +2203,32 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5964f80d42b14b54092a2b09b5ba8634, type: 3}
   - {fileID: 8300000, guid: d93869fe683e97e448fbb42f7b0f3ffb, type: 3}
   - {fileID: 8300000, guid: fadfc9c8757977f4f8da6a1cd5a44ee0, type: 3}
+  audioPlayersCount: 5
+  channel: 1
+--- !u!114 &2981713278973727813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5662501106357807095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013d2f1b59b0f71408bb9ba816659dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localVolume: 1
+  isMuted: 0
+  is3D: 0
+  min3D_Dist: 1
+  max3D_Dist: 500
+  audioClips:
+  - {fileID: 8300000, guid: d646a38632cdbaf4097d65943bc2a918, type: 3}
+  - {fileID: 8300000, guid: 94a98827668b7634ca0903daab9d9e36, type: 3}
+  - {fileID: 8300000, guid: 7da24d92f1bd12a4fac9f4c1ad1a63fc, type: 3}
+  - {fileID: 8300000, guid: 646d3fe74aac2f4439f123fc9b68c8d2, type: 3}
+  - {fileID: 8300000, guid: a3ed2301f1bdc6f4cba32d9024dd3207, type: 3}
+  - {fileID: 8300000, guid: 079ab18d682e66944b9db49da2ad90d9, type: 3}
   audioPlayersCount: 5
   channel: 1
 --- !u!1 &5711776781076614008
