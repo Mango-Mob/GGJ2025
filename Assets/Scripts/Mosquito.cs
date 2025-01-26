@@ -67,7 +67,7 @@ public class Mosquito : PausableObject
             is_facing_right = false;
             timer = Random.Range(min_delay.Evaluate(GameManager.Instance.time / 60.0f), max_delay.Evaluate(GameManager.Instance.time / 60.0f));
             speed = Random.Range(min_speed, max_speed);
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1.4f, 1.4f, 1.4f);
             transform.position = new Vector3(right_edge, transform.position.y, transform.position.z);
             GetComponent<SoloAudioAgent>().Stop();
         }
@@ -76,7 +76,7 @@ public class Mosquito : PausableObject
             is_facing_right = true;
             timer = Random.Range(min_delay.Evaluate(GameManager.Instance.time / 60.0f), max_delay.Evaluate(GameManager.Instance.time / 60.0f));
             speed = Random.Range(min_speed, max_speed);
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
             transform.position = new Vector3(left_edge, transform.position.y, transform.position.z);
             GetComponent<SoloAudioAgent>().Stop();
         }
