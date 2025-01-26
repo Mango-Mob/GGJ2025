@@ -27,7 +27,7 @@ public class DogoCinematic : MonoBehaviour
 
     public void DestroyLocalBubbles()
     {
-        foreach (var bubble in GameManager.Instance.GetBubblesInRange(nose_bone.position, 3))
+        foreach (var bubble in GameManager.Instance.GetBubblesInRange(nose_bone.position, 2.5f))
         {
             bubble.GetComponent<Bubble>().Pop(false);
         }
